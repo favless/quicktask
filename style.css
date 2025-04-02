@@ -1,12 +1,20 @@
 :root {
-    --header-height: 80px;
+    --header-height: 90px;
 
-    --primary: #FFFFFF
+    --darker: #d5d5d5;
 
+    --primary: #48CFCB;
+    --secondary: #229799;
+    --other: #424242;
+}
+
+body {
+    margin: 0px;
+    background-color: #F5F5F5;
 }
 
 header {
     height: var(--header-height);
     width: 100%;
-    color: ;
+    background-color: var(--darker);
 }
