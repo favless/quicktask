@@ -1,0 +1,12 @@
+:root {
+    --header-height: 80px;
+
+    --primary: #FFFFFF
+
+}
+
+header {
+    height: var(--header-height);
+    width: 100%;
+    color: ;
+}
