@@ -34,7 +34,7 @@
                         <button onclick="changeFilter('pending')">Pending</button>
                         <button onclick="changeFilter('completed')">Completed</button>
                     </div>
-                    <button class="add-button" onclick="openAddMenu()">+</button>
+                    <button class="add-button" onclick="toggleAddMenu()">+</button>
                 </div>
                 <div id="task-list">
                     <div id="task">
@@ -43,8 +43,26 @@
                     </div>
                 </div>
             </div>
+            <div class="desc-container">
+            </div>
         </div>
     </main>
+
+    <div class="add-menu-container" id="add-menu">
+        <div>
+            <span>Add Task <button onclick="toggleAddMenu()">X</button></span>
+            <div>
+                <label>name</label>
+                <input type="text" id="task-name">
+            </div>
+            <div>
+                <label>description</label>
+                <input type="text" id="task-desc">
+            </div>
+            <button onclick="addTask()">add</button>
+            
+        </div>
+    </div>
 
     <script src="script.js"></script>
 </body> 

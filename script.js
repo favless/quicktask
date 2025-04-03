@@ -9,3 +9,13 @@ function toggleFilterDropdown() {
         arrow.style.rotate = "0deg"
     }
 }
+
+function toggleAddMenu() {
+    const menu = document.getElementById("add-menu")
+
+    if (menu.style.display == "flex") {
+        menu.style.display = "none"
+    } else {
+        menu.style.display = "flex"
+    }
+}
