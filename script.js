@@ -1,3 +1,57 @@
+// Data handling
+// still trying to wrap my head around this
+// im taking a break today, i dont feel well. ill try to deliver on saturday. sorry.
+
+function addDataRow() {
+    let rowData = [document.getElementById("task-name-input").value, document.getElementById("task-desc-input").value, "completed"]
+    console.log("Got: " + rowData)
+    
+    const rawData = localStorage.getItem("tasks") || "";
+    const newRow = rowData.join("|");
+    localStorage.setItem("tasks", rawData ? rawData + "\n" + newRow : newRow);
+}
+
+function resetAllData() {
+    localStorage.setItem("tasks", [])
+}
+
+function getAllData() {
+    const rawData = localStorage.getItem("tasks");
+    if (!rawData) return [];
+    
+    return rawData.split("\n").map(row => row.split("|"));
+}
+
+function getTablesByStatus(status) {
+    const rawData = localStorage.getItem("tasks");
+    if (!rawData) return [];
+    
+    return rawData
+        .split("\n")                        // Split into rows
+        .map(row => row.split("|"))         // Convert each row into an array
+        .filter(row => row[2] == status);  // Filter by status (4th column)
+}
+
+function updateTableStatus(name, newStatus) {
+    let rawData = localStorage.getItem("tasks");
+    if (!rawData) return;
+
+    let updatedData = rawData
+        .split("\n") // Split into rows
+        .map(row => {
+            let columns = row.split("|"); // Split columns
+            if (columns[0] === name) { // Check if name matches
+                columns[2] = newStatus; // Update status
+            }
+            return columns.join("|"); // Rebuild row
+        })
+        .join("\n"); // Join rows back
+
+    localStorage.setItem("tasks", updatedData);
+}
+
+// everything else
+
 function toggleFilterDropdown() {
     const dropdown = document.getElementById("filterDropdown")
     const arrow = document.getElementById("filterArrow")
@@ -20,35 +74,36 @@ function toggleAddMenu() {
     }
 }
 
+function completeTask(task) {
+    console.log(task)
+    let taskName = task.querySelector("#task-label").textContent
 
-// Data handling
-// still trying to wrap my head around this
-// im taking a break today, i dont feel well. ill try to deliver on saturday. sorry.
-
-function addDataRow() {
-    let rowData = [document.getElementById("task-name-input").value, document.getElementById("task-desc-input").value, "pending"]
-    console.log("Got: " + rowData)
-    
-    const rawData = localStorage.getItem("tasks") || "";
-    const newRow = rowData.join("|");
-    localStorage.setItem("tasks", rawData ? rawData + "\n" + newRow : newRow);
+    updateTableStatus(taskName, "completed")
+    showTasks("pending")
+    console.log(getTablesByStatus("pending"))
 }
 
-function getAllData() {
-    const rawData = localStorage.getItem("tasks");
-    if (!rawData) return [];
+function showTasks(filter) {
+
+    document.querySelectorAll("#generatedTask").forEach(element => element.remove())
+
+    let tasks
+    if (filter == null) {
+        tasks = getAllData()
+    } else {
+        tasks = getTablesByStatus(filter)
+    }
     
-    return rawData.split("\n").map(row => row.split("|"));
+    for (i=0; i < tasks.length; i++) {
+
+        let newTask = document.getElementById("task").cloneNode(true);
+        newTask.id = "generatedTask"
+        newTask.style.display = "flex"
+        document.getElementById("task-list").appendChild(newTask)
+        newTask.querySelector("#task-label").textContent = tasks[i][0]
+        
+    }
 }
 
-function getTablesByStatus(status) {
-    const rawData = localStorage.getItem("tables");
-    if (!rawData) return [];
-    
-    return rawData
-        .split("\n")                        // Split into rows
-        .map(row => row.split("|"))         // Convert each row into an array
-        .filter(row => row[3] === status);  // Filter by status (4th column)
-}
-
-console.log(getAllData())
+showTasks()
+resetAllData()
