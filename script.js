@@ -21,7 +21,7 @@ function toggleAddMenu() {
 }
 
 
-// SCARY DATA HANDLING CORNER
+// Data handling
 // still trying to wrap my head around this
 // im taking a break today, i dont feel well. ill try to deliver on saturday. sorry.
 
@@ -46,9 +46,9 @@ function getTablesByStatus(status) {
     if (!rawData) return [];
     
     return rawData
-        .split("\n")                // Split into rows
-        .map(row => row.split("|")) // Convert each row into an array
-        .filter(row => row[3] === status); // Filter by status (4th column)
+        .split("\n")                        // Split into rows
+        .map(row => row.split("|"))         // Convert each row into an array
+        .filter(row => row[3] === status);  // Filter by status (4th column)
 }
 
 console.log(getAllData())
