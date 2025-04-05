@@ -121,17 +121,36 @@ main > div {
     rotate: 180deg;
 }
 
+.add-button-wrapper {
+    display: flex;
+    flex-direction: row-reverse;
+    align-items: center;
+}
+
+.add-button-wrapper span {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 1.5rem;
+    font-weight: bold;
+
+    overflow: hidden;
+    white-space: nowrap;
+
+    user-select: none;
+
+    padding-right: 10px;
+}
+
 .add-button {
-    display: inline-block;
+    display: flex;
+    align-items: center;
     height: 100%;
     aspect-ratio: 1/1;
 
-    padding: 0px;
+    padding: 5px;
 
     border: none;
     background: none;
-    font-family: Arial, Helvetica, sans-serif;
-    font-size: 100%;
+    font-size: 2.5rem;
 
     cursor: pointer;
 }
@@ -148,6 +167,8 @@ main > div {
     flex-direction: column;
 
     overflow: hidden;
+
+    transition: height 0.2s ease-in-out;
 }
 
 #filter-dropdown button {
