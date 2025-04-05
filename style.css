@@ -65,13 +65,11 @@ main > div {
 }
 
 .task-list-container {
-    background-color: var(--darker);
     padding: 20px;
     box-sizing: border-box;
 }
 
 .desc-container {
-    background-color: var(--darker);
     padding: 20px;
     box-sizing: border-box;
 }
@@ -81,65 +79,80 @@ main > div {
 .filter-bar {
     display: flex;
     position: relative;
+
+    background-color: var(--darker);
+
+    padding: 10px;
+
+    height: 45px;
     
     justify-content: space-between;
+}
+
+.filter-button-wrapper {
+    position: relative;
 }
 
 .filter-button {
     display: flex;
     justify-content: space-between;
     align-items: center;
+
+    padding-left: 20px;
+    
     background: none;
     border: none;
+
+    position: relative;
 
     color: var(--text);
     font-size: 1.7rem;
     font-weight: bold;
 
-    height: 40px;
+    height: 100%;
     cursor: pointer;
-
-    width: 200px;
 
     background-color: var(--primary);
 }
 
 .filter-button svg {
     height: 100%;
-    aspect-ratio: 1 / 1;
 
     rotate: 180deg;
-    transition: rotate 0.1s ease-out;
 }
 
 .add-button {
-    position: absolute;
-    right: 0px;
+    display: inline-block;
     height: 100%;
-    aspect-ratio: 1 / 1;
+    aspect-ratio: 1/1;
+
+    padding: 0px;
 
     border: none;
     background: none;
     font-family: Arial, Helvetica, sans-serif;
-    font-size: 2.5rem;
+    font-size: 100%;
 
     cursor: pointer;
 }
 
-.filter-bar > div {
+#filter-dropdown {
     position: absolute;
-    top: 40px;
+    width: 100%;
+    top: 45px;
+    left: 0px;
 
     background-color: var(--secondary);
 
-    display: none;
+    display: flex;
     flex-direction: column;
-    width: 200px;
+
+    overflow: hidden;
 }
 
-.filter-bar > div button {
+#filter-dropdown button {
     color: var(--body);
-    font-size: 1.7rem;
+    font-size: 1.5rem;
 
     padding: 5px 0px;
 
@@ -149,101 +162,7 @@ main > div {
     border: none;
 }
 
-/* task list rules */
-
-#task-list {
-    width: 100%;
-    height: calc(100% - 40px);
-    overflow-y: auto;
-    padding: 20px;
-    box-sizing: border-box;
+#filter-dropdown button:hover {
+    color: var(--darker);
+    background-color: #f5f5f520;
 }
-
-#task, #generatedTask {
-    width: 100%;
-    height: 100px;
-
-    border-radius: 25px;
-    border: 3px solid var(--text);
-
-    padding: 10px 20px;
-    box-sizing: border-box;
-
-    margin: 10px 0px;
-
-    font-family: Arial, Helvetica, sans-serif;
-    font-size: 2rem;
-    font-weight: bold;
-    color: var(--text);
-
-    overflow: hidden;
-
-    background-color: var(--body);
-
-    display: none;
-    justify-content: space-between;
-    align-items: center;
-}
-
-#task > button {
-    height: 100%;
-    aspect-ratio: 1 / 1;
-
-    border-radius: 50%;
-    border: 3px solid var(--secondary);
-    background-color: var(--primary);
-
-    font-size: 100%;
-    font-weight: bolder;
-
-    cursor: pointer;
-}
-
-#generatedTask > button {
-    height: 100%;
-    aspect-ratio: 1 / 1;
-
-    border-radius: 50%;
-    border: 3px solid var(--secondary);
-    background-color: var(--primary);
-
-    font-size: 100%;
-    font-weight: bolder;
-
-    cursor: pointer;
-}
-
-/* add menu rules  */
-
-.add-menu-container {
-    position: absolute;
-    top: 0px;
-    left: 0px;
-    width: 100%;
-    height: 100%;
-
-    display: none;
-    justify-content: center;
-    align-items: center;
-
-    background-color: rgba(0, 0, 0, 0.322);
-}
-
-.add-menu-container > div {
-    background-color: var(--darker);
-
-    color: var(--text);
-    font-family: Arial, Helvetica, sans-serif;
-    font-size: 2rem;
-
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-}
-
-.add-menu-container > div > span {
-    font-weight: bold;
-    font-size: 2.5rem;
-}
-
-/* fuck any and all styles, im making this like im a backend developer  */
