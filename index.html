@@ -10,7 +10,7 @@
     <header>
         <div class="header-container">
             <div class="header-left">
-                <img src="assets/logo.png" alt=""> <!-- i hate making logos, do this first later -->
+                <img src="assets/logo.png" alt="">
             </div>
             <div class="header-right"></div>
         </div>
@@ -20,26 +20,32 @@
         <div>
             <div class="task-list-container">
                 <div class="filter-bar">
-                    <button class="filter-button" onclick="toggleFilterDropdown()">
-                        Sort By All
-                        <svg id="filterArrow" viewBox="0 0 24 24" fill="var(--text)" xmlns="http://www.w3.org/2000/svg">
-                            <rect x="0" fill="none" width="24" height="24"/>
-                            <g>
-                            <path d="M7 10l5 5 5-5"/>
-                            </g>
-                        </svg>
-                    </button>
-                    <div id="filterDropdown">
-                        <button onclick="changeFilter('all')">All</button>
-                        <button onclick="changeFilter('pending')">Pending</button>
-                        <button onclick="changeFilter('completed')">Completed</button>
+                    <div class="filter-button-wrapper">
+                        <button class="filter-button" onclick="toggleFilterDropdown()">
+                            Sort By All
+                            <svg id="dropdown-arrow" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                <g>
+                                  <path fill="var(--text)" d="M7 10l5 5 5-5"/>
+                                </g>
+                            </svg>
+                        </button>
+                        <div id="filter-dropdown">
+                            <button onclick="changeFilter('all')">All</button>
+                            <button onclick="changeFilter('pending')">Pending</button>
+                            <button onclick="changeFilter('completed')">Completed</button>
+                        </div>
                     </div>
-                    <button class="add-button" onclick="toggleAddMenu()">+</button>
+                    
+                    <div class="add-button-wrapper">
+                        <button class="add-button" onclick="toggleAddMenu()"><span id="add-button-label">Add a task</span>+</button>
+                        
+                    </div>
+                    
                 </div>
-                <div id="task-list">
+                <div class="task-list">
                     <div id="task">
                         <span id="task-label">Throw out the trash</span>
-                        <button onclick="completeTask(this.parentElement)">&check;</button>
+                        <button onclick="">&check;</button>
                     </div>
                 </div>
             </div>
@@ -48,21 +54,7 @@
         </div>
     </main>
 
-    <div class="add-menu-container" id="add-menu">
-        <div>
-            <span>Add Task <button onclick="toggleAddMenu()">X</button></span>
-            <div>
-                <label>name</label>
-                <input type="text" id="task-name-input">
-            </div>
-            <div>
-                <label>description</label>
-                <input type="text" id="task-desc-input">
-            </div>
-            <button onclick="addDataRow()">add</button>
-            
-        </div>
-    </div>
+
 
     <script src="script.js"></script>
 </body> 
