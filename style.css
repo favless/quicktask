@@ -9,6 +9,7 @@
     --darker: #e6e6e6;
 
     --primary: #48CFCB;
+    --primary-lighter: #58e7e3;
     --secondary: #229799;
     --text: #424242;
 }
@@ -113,12 +114,18 @@ main > div {
     cursor: pointer;
 
     background-color: var(--primary);
+    transition: background-color 0.2s ease-in-out;
+}
+
+.filter-button:hover {
+    background-color: var(--primary-lighter);
 }
 
 .filter-button svg {
     height: 100%;
 
     rotate: 180deg;
+    transition: rotate 0.2s ease-in-out;
 }
 
 .add-button-wrapper {
@@ -132,12 +139,15 @@ main > div {
     font-size: 1.5rem;
     font-weight: bold;
 
+    width: auto;
     overflow: hidden;
     white-space: nowrap;
 
     user-select: none;
 
-    padding-right: 10px;
+    margin-right: 12px;
+
+    transition: max-width 0.4s ease-in-out;
 }
 
 .add-button {
@@ -146,6 +156,8 @@ main > div {
     height: 100%;
     aspect-ratio: 1/1;
 
+    background-color: var(--darker);
+
     padding: 5px;
 
     border: none;
@@ -153,6 +165,12 @@ main > div {
     font-size: 2.5rem;
 
     cursor: pointer;
+    
+    transition: background-color 0.2s ease-in-out;
+}
+
+.add-button:hover {
+    background-color: var(--body);
 }
 
 #filter-dropdown {
@@ -181,11 +199,12 @@ main > div {
 
     background: none;
     border: none;
+
+    transition: background-color, 0.2s ease-in-out;
 }
 
 #filter-dropdown button:hover {
-    color: var(--darker);
-    background-color: #f5f5f520;
+    background-color: #f5f5f53d;
 }
 
 /* tasks */
@@ -201,9 +220,9 @@ main > div {
     justify-content: space-between;
     align-items: center;
 
-    height: 40px;
+    height: 60px;
 
-    padding: 20px 20px;
+    padding: 10px 10px 10px 20px;
 
     border: 1px solid var(--text);
 }
@@ -211,16 +230,28 @@ main > div {
 #task-label {
     font-family: Arial, Helvetica, sans-serif;
     font-size: 2em;
-
-    padding: 20px 0px;
 }
 
 #task > button {
     height: 100%;
     aspect-ratio: 1 / 1;
 
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 2em;
+    font-weight: bold;
+    color: var(--text);
+
     padding: 0px;
 
+    cursor: pointer;
+
     background-color: var(--primary);
-    border: 2px solid var(--secondary);
+    border: 3px solid var(--secondary);
+
+    transition: background-color 0.2s ease-in-out, border 0.2s ease-in-out;
+}
+
+#task > button:hover {
+    background-color:var(--primary-lighter);
+    border-color: var(--primary);
 }
