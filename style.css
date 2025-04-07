@@ -19,6 +19,18 @@ body {
     background-color: var(--body);
 }
 
+body.dark {
+    --body: #1e1e1e;
+    --darker: #2a2a2a;
+    --primary: #3f8f8b;
+    --secondary: #265e60;
+    --text: #e5e5e5;
+}
+
+* {
+    transition: background-color 0.3s ease, color 0.3s ease, fill 0.3s ease;
+}
+
 /* header rules */
 
 header {
@@ -156,12 +168,13 @@ main > div {
     height: 100%;
     aspect-ratio: 1/1;
 
-    background-color: var(--darker);
+    color: var(--text);
+
+    background-color: rgba(0, 0, 0, 0);
 
     padding: 5px;
 
     border: none;
-    background: none;
     font-size: 2.5rem;
 
     cursor: pointer;
@@ -290,6 +303,33 @@ main > div {
 .admin-menu-container {
     height: 500px;
     width: 500px;
-    background-color: white;
+    background-color: var(--body);
     z-index: 1;
+}
+
+.topbar {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+
+    height: 40px;
+    background-color: var(--darker);
+}
+
+.topbar button {
+    height: 100%;
+    aspect-ratio: 1 / 1;
+    font-size: 1.66rem;
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+.admin-menu-container h2 {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 3rem;
+    font-weight: bold;
+    color: var(--text);
+    text-align: center;
+    margin: 0px;
 }

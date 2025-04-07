@@ -43,6 +43,10 @@ function toggleFilterDropdown() {
     }
 }
 
+function toggleDarkMode() {
+    document.body.classList.toggle("dark");
+}
+
 function toggleAdminPanel() {
     if (adminWrapper.style.opacity == 0) {
         adminWrapper.style.opacity = "1";
