@@ -47,13 +47,18 @@ function toggleFilterDropdown() {
 function changeFilterMode(type) {
     filterMode = type
     sortLabel.textContent = "Sort by " + filterMode
+    updateTasks()
 }
 
 function updateTasks() {
-    document.querySelectorAll("#task").array.forEach(element => {
+    document.querySelectorAll("#task").forEach(element => {
         element.remove()
     });
 
+    let filteredTasks = getTasks(filterMode)
+    for (i=0; i < filteredTasks.length; i++) {
+        console.log(filteredTasks[i])
+    }
 
 }
 
