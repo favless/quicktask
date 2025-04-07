@@ -9,8 +9,10 @@ const addButtonLabel = document.getElementById("add-button-label")
 
 const sortLabel = document.getElementById("sort-label")
 
+const adminWrapper = document.querySelector(".admin-menu-wrapper")
 
 // for height initializing or whatever
+
 const filterHeight = filterDropdown.offsetHeight
 filterDropdown.style.height = "0px";
 
@@ -20,8 +22,6 @@ addButtonLabel.style.maxWidth = "0px"
 // general variables
 
 let filterMode = "all"
-
-let 
 
 // COSMETIC FUNCTIONS -------------------------------
 
@@ -40,6 +40,16 @@ function toggleFilterDropdown() {
     } else {
         filterDropdown.style.height = "0px"
         dropdownArrow.style.rotate = "180deg"
+    }
+}
+
+function toggleAdminPanel() {
+    if (adminWrapper.style.opacity == 0) {
+        adminWrapper.style.opacity = "1";
+        adminWrapper.style.pointerEvents = "auto";
+    } else {
+        adminWrapper.style.opacity = "0";
+        adminWrapper.style.pointerEvents = "none";
     }
 }
 

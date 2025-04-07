@@ -255,3 +255,41 @@ main > div {
     background-color:var(--primary-lighter);
     border-color: var(--primary);
 }
+
+/* admin rules  */
+
+.admin-menu-wrapper {
+    position: fixed;
+
+    opacity: 0;
+    display: flex;
+    pointer-events: none;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: 100dvh;
+
+    transition: opacity 0.2s ease-out;
+}
+
+.admin-menu-wrapper > button {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border: none;
+    background-color: rgba(0, 0, 0, 0.504);
+
+    cursor: pointer;
+}
+
+.admin-menu-container {
+    height: 500px;
+    width: 500px;
+    background-color: white;
+    z-index: 1;
+}
