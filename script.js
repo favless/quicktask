@@ -17,8 +17,11 @@ filterDropdown.style.height = "0px";
 const addButtonLabelWidth = addButtonLabel.offsetWidth
 addButtonLabel.style.maxWidth = "0px"
 
+// general variables
 
 let filterMode = "all"
+
+let 
 
 // COSMETIC FUNCTIONS -------------------------------
 
@@ -42,6 +45,17 @@ function toggleFilterDropdown() {
 
 // DATA HANDLING FUNCTIONS ------------------------------
 
+// template for the data structure:
+
+// [
+//     id,         // number
+//     order,      // number (for sorting)
+//     name,       // string
+//     description,// string
+//     status,     // string or number ("completed", "pending", or progress value)
+//     steps       // number (0 or some total progress number)
+// ]
+
 
 
 function changeFilterMode(type) {
@@ -63,10 +77,20 @@ function updateTasks() {
 }
 
 function addTask(taskArray) {
-    const tasks = JSON.parse(localStorage.getItem("tasks")) || [];
+    const raw = localStorage.getItem("tasks");
+    const tasks = raw ? JSON.parse(raw) : [];
+  
+    // Find the current highest ID
+    const maxId = tasks.reduce((max, task) => {
+      return task[0] > max ? task[0] : max;
+    }, 0);
+  
+    const newId = maxId + 1;
+    taskArray[0] = newId;
+  
     tasks.push(taskArray);
     localStorage.setItem("tasks", JSON.stringify(tasks));
-}
+  }
 
 function removeTask(id) {
     if (id === "all") {
@@ -74,19 +98,22 @@ function removeTask(id) {
       return;
     }
   
-    const tasks = JSON.parse(localStorage.getItem("tasks")) || [];
+    const raw = localStorage.getItem("tasks");
+    const tasks = raw ? JSON.parse(raw) : [];
     const filtered = tasks.filter(task => task[0] !== id);
     localStorage.setItem("tasks", JSON.stringify(filtered));
 }
 
 function editTask(id, updatedTaskArray) {
-    const tasks = JSON.parse(localStorage.getItem("tasks")) || [];
+    const raw = localStorage.getItem("tasks");
+    const tasks = raw ? JSON.parse(raw) : [];
     const updated = tasks.map(task => task[0] === id ? updatedTaskArray : task);
     localStorage.setItem("tasks", JSON.stringify(updated));
 }
 
 function getTasks(status = null) {
-    const tasks = JSON.parse(localStorage.getItem("tasks")) || [];
+    const raw = localStorage.getItem("tasks");
+    const tasks = raw ? JSON.parse(raw) : [];
   
     if (!status) return tasks;
   

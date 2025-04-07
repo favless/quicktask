@@ -12,7 +12,9 @@
             <div class="header-left">
                 <img src="assets/logo.png" alt="">
             </div>
-            <div class="header-right"></div>
+            <div class="header-right">
+                <button onclick="toggleAdminPanel()">Admin</button>
+            </div>
         </div>
     </header>
 
@@ -54,7 +56,10 @@
         </div>
     </main>
 
-
+    <div class="admin-menu-wrapper">
+        <button onclick="toggleAdminPanel()"></button>
+        <div class="admin-menu-container"></div>
+    </div>
 
     <script src="script.js"></script>
 </body> 
