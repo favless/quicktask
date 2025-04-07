@@ -1,13 +1,24 @@
+// for transitions and animations
 const filterDropdown = document.getElementById("filter-dropdown")
 const dropdownArrow = document.getElementById("dropdown-arrow")
-const addButton = document.querySelector(".add-button");
+
+const addButton = document.querySelector(".add-button")
 const addButtonLabel = document.getElementById("add-button-label")
 
+// general element vars
+
+const sortLabel = document.getElementById("sort-label")
+
+
+// for height initializing or whatever
 const filterHeight = filterDropdown.offsetHeight
 filterDropdown.style.height = "0px";
 
 const addButtonLabelWidth = addButtonLabel.offsetWidth
 addButtonLabel.style.maxWidth = "0px"
+
+
+let filterMode = "all"
 
 // COSMETIC FUNCTIONS -------------------------------
 
@@ -30,6 +41,21 @@ function toggleFilterDropdown() {
 }
 
 // DATA HANDLING FUNCTIONS ------------------------------
+
+
+
+function changeFilterMode(type) {
+    filterMode = type
+    sortLabel.textContent = "Sort by " + filterMode
+}
+
+function updateTasks() {
+    document.querySelectorAll("#task").array.forEach(element => {
+        element.remove()
+    });
+
+
+}
 
 function addTask(taskArray) {
     const tasks = JSON.parse(localStorage.getItem("tasks")) || [];

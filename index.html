@@ -22,7 +22,7 @@
                 <div class="filter-bar">
                     <div class="filter-button-wrapper">
                         <button class="filter-button" onclick="toggleFilterDropdown()">
-                            Sort By All
+                            <span id="sort-label">Sort by all</span>
                             <svg id="dropdown-arrow" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                                 <g>
                                   <path fill="var(--text)" d="M7 10l5 5 5-5"/>
@@ -30,9 +30,9 @@
                             </svg>
                         </button>
                         <div id="filter-dropdown">
-                            <button onclick="changeFilter('all')">All</button>
-                            <button onclick="changeFilter('pending')">Pending</button>
-                            <button onclick="changeFilter('completed')">Completed</button>
+                            <button onclick="changeFilterMode('all');toggleFilterDropdown()">All</button>
+                            <button onclick="changeFilterMode('pending');toggleFilterDropdown()">Pending</button>
+                            <button onclick="changeFilterMode('completed');toggleFilterDropdown()">Completed</button>
                         </div>
                     </div>
                     
@@ -43,7 +43,7 @@
                     
                 </div>
                 <div class="task-list">
-                    <div id="task">
+                    <div id="task" style="display: none;">
                         <span id="task-label">Throw out the trash</span>
                         <button onclick="">&check;</button>
                     </div>
