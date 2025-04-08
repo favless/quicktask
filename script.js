@@ -146,11 +146,27 @@ function removeTask(location) {
     alert("SUCESSFULLY REMOVED TASK ENTRY WITH ID " + id + "!")
 }
 
-function editTask(id, updatedTaskArray) {
+function editTask(location) {
+    const container = location.parentElement.parentElement
+    let id = container.querySelector("#id-field").value
+
+    if (!/^\d+$/.test(id)) {
+        alert("INVALID OR MISSING ID!")
+        return
+    }
+
+    let name = container.querySelector("#name-field").value
+    let desc = container.querySelector("#desc-field").value
+    let status = container.querySelector("#status-field").value
+
+    let updatedTaskArray = [id, name, desc, status]
+
     const raw = localStorage.getItem("tasks")
     const tasks = raw ? JSON.parse(raw) : []
     const updated = tasks.map(task => task[0] === id ? updatedTaskArray : task)
     localStorage.setItem("tasks", JSON.stringify(updated))
+
+    alert("SUCESSFULLY UPDATED TASK WITH ID " + id + "!")
 }
 
 function getTasks(status = null) {

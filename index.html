@@ -60,25 +60,37 @@
     <div class="admin-menu-wrapper">
         <button onclick="toggleAdminPanel()"></button>
         <div class="admin-menu-container">
-            <div class="topbar">
-                <button onclick="toggleAdminPanel()">x</button>
-            </div>
-            <h2>Admin</h2>
-            <div class="admin-inputs">
-                <label for="">ID</label>
-                <input type="text" id="id-field" placeholder="Type text here...">
-                <label for="">name</label>
-                <input type="text" id="name-field" placeholder="Type text here...">
-                <label for="">description</label>
-                <input type="text" id="desc-field" placeholder="Type text here...">
-                <label for="">status</label>
-                <input type="text" id="status-field" placeholder="Type text here...">
-                <div>
-                    <button onclick="addTask(this)">Add task</button>
-                    <button onclick="editTask(this)">Edit from ID</button>
-                    <button onclick="removeTask(this)">Remove from ID</button>
+            <div class="admin-menu">
+                <div class="topbar">
+                    <button onclick="toggleAdminPanel()">x</button>
+                </div>
+                <h2>Admin</h2>
+                <div class="admin-inputs">
+                    <label for="">ID</label>
+                    <input type="text" id="id-field" placeholder="Type text here...">
+                    <label for="">name</label>
+                    <input type="text" id="name-field" placeholder="Type text here...">
+                    <label for="">description</label>
+                    <input type="text" id="desc-field" placeholder="Type text here...">
+                    <label for="">status</label>
+                    <input type="text" id="status-field" placeholder="Type text here...">
+                    <div>
+                        <button onclick="addTask(this)">Add task</button>
+                        <button onclick="editTask(this)">Edit from ID</button>
+                        <button onclick="removeTask(this)">Remove from ID</button>
+                    </div>
                 </div>
             </div>
+            <div class="data-menu">
+                <div class="topbar">
+                    <button onclick="toggleAdminPanel()">x</button>
+                </div>
+                <h2>View</h2>
+                <div class="data-list">
+                    <div class="entry"></div>
+                </div>
+            </div>
+            
         </div>
     </div>
 

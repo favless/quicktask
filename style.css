@@ -301,8 +301,7 @@ main > div {
 }
 
 .admin-menu-container {
-    width: 500px;
-    background-color: var(--body);
+    display: flex;
     z-index: 1;
 }
 
@@ -311,6 +310,7 @@ main > div {
     justify-content: flex-end;
     align-items: center;
 
+    width: 100%;
     height: 40px;
     background-color: var(--darker);
 }
@@ -321,6 +321,7 @@ main > div {
     font-size: 1.66rem;
     background: none;
     border: none;
+    color: var(--text);
     cursor: pointer;
 }
 
@@ -331,6 +332,11 @@ main > div {
     color: var(--text);
     text-align: center;
     margin: 0px;
+}
+
+.admin-menu {
+    width: 500px;
+    background-color: var(--body);
 }
 
 .admin-inputs {
@@ -350,6 +356,9 @@ main > div {
     width: 100%;
     height: 40px;
 
+    background-color: var(--darker);
+    color: var(--text);
+
     box-sizing: border-box;
 
     font-size: 1rem;
@@ -357,7 +366,7 @@ main > div {
 
     padding-left: 10px;
 
-    border: 2px solid var(--text);
+    border: 2px solid #424242;
 
     margin-bottom: 10px;
 }
@@ -376,6 +385,8 @@ main > div {
 
     margin: 5px;
     padding: 5px 10px;
+
+    color: var(--text);
     
     cursor: pointer;
 
@@ -385,4 +396,24 @@ main > div {
 .admin-inputs > div button:hover {
     border-color: var(--primary);
     background-color: var(--primary-lighter);
+}
+
+.data-menu {
+    width: 500px;
+    background-color: var(--body);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-left: 20px;
+}
+
+.data-list {
+    width: 90%;
+    height: calc(100% - 125px);
+    border: 2px solid #424242;
+}
+
+.entry {
+    height: 30px;
+    background: linear-gradient(0deg, var(--darker) 0%, var(--body) 35%, var(--body) 100%);
 }
