@@ -90,49 +90,77 @@ function updateTasks() {
 
 }
 
-function addTask(taskArray) {
-    const raw = localStorage.getItem("tasks");
-    const tasks = raw ? JSON.parse(raw) : [];
-  
+function addTask(location) {
+    const raw = localStorage.getItem("tasks")
+    const tasks = raw ? JSON.parse(raw) : []
+    const container = location.parentElement.parentElement
+    let id = null;
+
+    console.log(container)
+
+    if (container.querySelector("#id-field").value != '') {
+        id = container.querySelector("#id-field").value
+    }
+
+    let name = container.querySelector("#name-field").value
+    let desc = container.querySelector("#desc-field").value
+    let status = container.querySelector("#status-field").value
+
+    if (name == '' || desc == '') {
+        alert("MISSING NAME OR DESCRIPTION!")
+        return
+    }
+
     // Find the current highest ID
     const maxId = tasks.reduce((max, task) => {
-      return task[0] > max ? task[0] : max;
-    }, 0);
-  
-    const newId = maxId + 1;
-    taskArray[0] = newId;
+      return task[0] > max ? task[0] : max
+    }, 0)
+    id = maxId + 1
+
+    let taskArray = [id, name, desc, status]
   
     tasks.push(taskArray);
-    localStorage.setItem("tasks", JSON.stringify(tasks));
+    localStorage.setItem("tasks", JSON.stringify(tasks))
+
+    alert("SUCESSFULLY ADDED TASK WITH NAME " + name + " AND ID " + id + "!")
   }
 
-function removeTask(id) {
+function removeTask(location) {
+    const container = location.parentElement.parentElement
+    let id = container.querySelector("#id-field").value
     if (id === "all") {
-      localStorage.removeItem("tasks");
+      localStorage.removeItem("tasks")
+      alert("SUCESSFULLY REMOVED ALL TASK ENTRIES!")
       return;
     }
-  
-    const raw = localStorage.getItem("tasks");
-    const tasks = raw ? JSON.parse(raw) : [];
-    const filtered = tasks.filter(task => task[0] !== id);
-    localStorage.setItem("tasks", JSON.stringify(filtered));
+
+    if (!/^\d+$/.test(id)) {
+        alert("INVALID OR MISSING ID!")
+        return
+    }
+
+    const raw = localStorage.getItem("tasks")
+    const tasks = raw ? JSON.parse(raw) : []
+    const filtered = tasks.filter(task => task[0] !== id)
+    localStorage.setItem("tasks", JSON.stringify(filtered))
+    alert("SUCESSFULLY REMOVED TASK ENTRY WITH ID " + id + "!")
 }
 
 function editTask(id, updatedTaskArray) {
-    const raw = localStorage.getItem("tasks");
-    const tasks = raw ? JSON.parse(raw) : [];
-    const updated = tasks.map(task => task[0] === id ? updatedTaskArray : task);
-    localStorage.setItem("tasks", JSON.stringify(updated));
+    const raw = localStorage.getItem("tasks")
+    const tasks = raw ? JSON.parse(raw) : []
+    const updated = tasks.map(task => task[0] === id ? updatedTaskArray : task)
+    localStorage.setItem("tasks", JSON.stringify(updated))
 }
 
 function getTasks(status = null) {
-    const raw = localStorage.getItem("tasks");
-    const tasks = raw ? JSON.parse(raw) : [];
+    const raw = localStorage.getItem("tasks")
+    const tasks = raw ? JSON.parse(raw) : []
   
     if (!status) return tasks;
   
     if (status === "completed") {
-      return tasks.filter(task => task[4] === "completed");
+      return tasks.filter(task => task[4] === "completed")
     }
   
     if (status === "pending") {
