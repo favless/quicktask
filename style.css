@@ -399,7 +399,7 @@ main > div {
 }
 
 .data-menu {
-    width: 500px;
+    width: 800px;
     background-color: var(--body);
     display: flex;
     flex-direction: column;
@@ -413,7 +413,51 @@ main > div {
     border: 2px solid #424242;
 }
 
+.entry-header {
+    display: grid;
+    grid-template-columns: 65px 35% 35% calc(100% - (70% + 64px));
+    grid-template-rows: 100%;
+
+    height: 30px;
+    background-color: var(--darker);
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bold;
+    color: var(--text);
+}
+
+.entry-header > div {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
 .entry {
+    display: grid;
+    grid-template-columns: 65px 35% 35% calc(100% - (70% + 64px));
+
     height: 30px;
     background: linear-gradient(0deg, var(--darker) 0%, var(--body) 35%, var(--body) 100%);
+    font-family: Arial, Helvetica, sans-serif;
+    color: var(--text);
+}
+
+.entry-header > div > span {
+    padding-left: 10px;
+}
+
+.entry > div {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.entry > div > span {
+    padding-left: 10px;
+}
+
+.seperator {
+    width: 1px;
+    height: 80%;
+    background-color: #424242;
+    align-self: center
 }
