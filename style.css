@@ -31,6 +31,13 @@ body.dark {
     transition: background-color 0.3s ease, color 0.3s ease, fill 0.3s ease;
 }
 
+body.preload,
+body.preload *,
+body.preload *::before,
+body.preload *::after {
+    transition: none !important;
+}
+
 /* header rules */
 
 header {

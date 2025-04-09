@@ -23,7 +23,19 @@ addButtonLabel.style.maxWidth = "0px"
 
 let filterMode = "all"
 
+let darkmode = localStorage.getItem("darkmode")
+if (darkmode == null) {
+    localStorage.setItem("darkmode", "off")
+    darkmode = "off"
+}
+
 // COSMETIC FUNCTIONS -------------------------------
+
+window.addEventListener("DOMContentLoaded", () => {
+    setTimeout(() => {
+      document.body.classList.remove("preload");
+    }, 10); // 10ms just to ensure it's past paint
+  });
 
 addButton.addEventListener("mouseenter", () => {
     addButtonLabel.style.maxWidth = addButtonLabelWidth + "px"
@@ -45,6 +57,19 @@ function toggleFilterDropdown() {
 
 function toggleDarkMode() {
     document.body.classList.toggle("dark");
+    if (darkmode == "off") {
+        darkmode = "on"
+        localStorage.setItem("darkmode", "on")
+    } else {
+        darkmode = "off"
+        localStorage.setItem("darkmode", "off")
+    }
+}
+
+if (darkmode == "on") {
+    document.body.classList.add("dark");
+} else {
+    document.body.classList.remove("dark");
 }
 
 function toggleAdminPanel() {
@@ -185,5 +210,5 @@ function getTasks(status = null) {
       );
     }
   
-    return []; // fallback if status is unknown
+    alert("UNKNOWN STATUS!")
 }
