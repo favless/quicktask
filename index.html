@@ -27,7 +27,7 @@
             <div class="task-list-container">
                 <div class="filter-bar">
                     <div class="filter-button-wrapper">
-                        <button class="filter-button" onclick="toggleFilterDropdown()">
+                        <button class="filter-button text bold" onclick="toggleFilterDropdown()">
                             <span id="sort-label">Sort by all</span>
                             <svg id="dropdown-arrow" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                                 <g>
@@ -43,8 +43,10 @@
                     </div>
                     
                     <div class="add-button-wrapper">
-                        <button class="add-button" onclick="toggleAddMenu()"><span id="add-button-label">Add a task</span>+</button>
-                        
+                        <button class="add-button text bold" onclick="toggleAddMenu()">
+                            <span id="add-button-label">Add a task</span>
+                            +
+                        </button>
                     </div>
                     
                 </div>
@@ -67,20 +69,20 @@
                 <div class="topbar">
                     <button onclick="toggleAdminPanel()">x</button>
                 </div>
-                <h2>Admin</h2>
-                <div class="admin-inputs">
+                <h2 class="text bold">Admin</h2>
+                <div class="admin-inputs text bold">
                     <label for="">ID</label>
-                    <input type="text" id="id-field" placeholder="Type text here...">
+                    <input type="text" id="id-field" autocomplete="off" placeholder="Type text here...">
                     <label for="">name</label>
-                    <input type="text" id="name-field" placeholder="Type text here...">
+                    <input type="text" id="name-field" autocomplete="off" placeholder="Type text here...">
                     <label for="">description</label>
-                    <input type="text" id="desc-field" placeholder="Type text here...">
+                    <input type="text" id="desc-field" autocomplete="off" placeholder="Type text here...">
                     <label for="">status</label>
-                    <input type="text" id="status-field" placeholder="Type text here...">
+                    <input type="text" id="status-field" autocomplete="off" placeholder="Type text here...">
                     <div>
-                        <button onclick="addTask(this)">Add task</button>
-                        <button onclick="editTask(this)">Edit from ID</button>
-                        <button onclick="removeTask(this)">Remove from ID</button>
+                        <button class="text bold" onclick="addTask(this)">Add task</button>
+                        <button class="text bold" onclick="editTask(this)">Edit from ID</button>
+                        <button class="text bold" onclick="removeTask(this)">Remove from ID</button>
                     </div>
                 </div>
             </div>
@@ -88,9 +90,9 @@
                 <div class="topbar">
                     <button onclick="toggleAdminPanel()">x</button>
                 </div>
-                <h2>View</h2>
-                <div class="data-list">
-                    <div class="entry-header">
+                <h2 class="text bold">View</h2>
+                <div class="data-list" id="data-list">
+                    <div class="entry text bold">
                         <div>
                             <span>id</span>
                             <div class="seperator"></div>
@@ -108,22 +110,21 @@
                             <div></div>
                         </div>
                     </div>
-                    <div class="entry">
+                    <div class="entry text" style="display: none;" id="data-template">
                         <div>
-                            <span>1</span>
+                            <span id="data-id">1</span>
                             <div class="seperator"></div>
                         </div>
                         <div>
-                            <span>hello</span>
+                            <span id="data-name">hello</span>
                             <div class="seperator"></div>
                         </div>
                         <div>
-                            <span>world!</span>
+                            <span id="data-desc">world!</span>
                             <div class="seperator"></div>
                         </div>
                         <div>
-                            <span>pending</span>
-                            <div class="seperator"></div>
+                            <span id="data-status">pending</span>
                         </div>
                     </div>
                 </div>
