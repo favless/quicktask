@@ -357,7 +357,7 @@ main > div {
     color: var(--text);
 }
 
-.admin-inputs input {
+.admin-inputs input, select {
     width: 100%;
     height: 40px;
 
@@ -432,6 +432,10 @@ main > div {
 
 .entry > div > span {
     padding-left: 10px;
+}
+
+.entry-header {
+    background: var(--darker);
 }
 
 .seperator {

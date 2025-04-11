@@ -178,6 +178,10 @@ function addTask(location) {
     const tasks = raw ? JSON.parse(raw) : []
     const container = location.parentElement.parentElement
     let id = null;
+    // i dont know where to put the id number checking thing, but fucking somehow
+    // this thing auto increments if its characters. if it aint broke dont fix it
+
+    // nevermind now it's fucking broken. im starting to comment like a valve dev
 
     // checks if the field is empty before assigning id value
     if (container.querySelector("#id-field").value != '') {
@@ -196,7 +200,7 @@ function addTask(location) {
 
     // if theres no id provided, automatically increment it
     // i actually forgot to check for null before, so now its fixed
-    if (id != null) {
+    if (id == null) {
         const maxId = tasks.reduce((max, task) => {
             return task[0] > max ? task[0] : max
         }, 0)
@@ -220,6 +224,7 @@ function removeTask(location) {
     // if "all" is in the id field, it just fucking thundercunts the tasks local storage out the window completely
     if (id === "all") {
       localStorage.removeItem("tasks")
+      populateDataView()
       alert("SUCESSFULLY REMOVED ALL TASK ENTRIES!")
       return;
     }
@@ -233,7 +238,7 @@ function removeTask(location) {
     // i should actually ask chatgpt to explain this im not so sure
     const raw = localStorage.getItem("tasks")
     const tasks = raw ? JSON.parse(raw) : []
-    const filtered = tasks.filter(task => task[0] !== id)
+    const filtered = tasks.filter(task => task[0] !== Number(id))
     localStorage.setItem("tasks", JSON.stringify(filtered))
     populateDataView()
 
@@ -259,7 +264,7 @@ function editTask(location) {
     // also ask chatgpt here
     const raw = localStorage.getItem("tasks")
     const tasks = raw ? JSON.parse(raw) : []
-    const updated = tasks.map(task => task[0] === id ? updatedTaskArray : task)
+    const updated = tasks.map(task => task[0] == id ? updatedTaskArray : task)
     localStorage.setItem("tasks", JSON.stringify(updated))
     populateDataView()
 

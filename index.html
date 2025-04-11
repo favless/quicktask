@@ -78,7 +78,11 @@
                     <label for="">description</label>
                     <input type="text" id="desc-field" autocomplete="off" placeholder="Type text here...">
                     <label for="">status</label>
-                    <input type="text" id="status-field" autocomplete="off" placeholder="Type text here...">
+                    <select id="status-field">
+                        <option value="pending">pending</option>
+                        <option value="completed">completed</option>
+                    </select>
+                    <!-- 🦀 lmaooo-->
                     <div>
                         <button class="text bold" onclick="addTask(this)">Add task</button>
                         <button class="text bold" onclick="editTask(this)">Edit from ID</button>
@@ -92,7 +96,7 @@
                 </div>
                 <h2 class="text bold">View</h2>
                 <div class="data-list" id="data-list">
-                    <div class="entry text bold">
+                    <div class="entry text bold entry-header">
                         <div>
                             <span>id</span>
                             <div class="seperator"></div>
