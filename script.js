@@ -117,6 +117,41 @@ function getTasks(status = null) {
     alert("UNKNOWN STATUS!")
 }
 
+function populateTasks() {
+    const taskList = document.querySelector(".task-list")
+    const taskTemplate = document.getElementById("task-template");
+
+    taskList.querySelectorAll("#task").forEach(element => {
+        element.remove()
+    });
+
+    const tasks = getTasks()
+
+    for (i=0; i < tasks.length; i++) {
+        let id = tasks[i][0]
+        let name = tasks[i][1]
+        let desc = tasks[i][2]
+        let status = tasks[i][3]
+
+        // cloning, parenting and id changing
+        let newTask = taskTemplate.cloneNode(true);
+        newTask.setAttribute( 'id', "task" );
+        newTask.setAttribute("data-id", id);
+        taskList.appendChild(newTask)
+        
+        newTask.style.display = "flex"
+        newTask.querySelector("#task-label").textContent = name;
+    }
+
+    document.querySelectorAll("#task").forEach(task => {
+        task.addEventListener("click", () => {
+            console.log("hello")
+        })
+    });
+}
+
+populateTasks()
+
 function populateDataView() {
     const dataList = document.getElementById("data-list")
     const dataTemplate = dataList.querySelector("#data-template")
@@ -178,10 +213,6 @@ function addTask(location) {
     const tasks = raw ? JSON.parse(raw) : []
     const container = location.parentElement.parentElement
     let id = null;
-    // i dont know where to put the id number checking thing, but fucking somehow
-    // this thing auto increments if its characters. if it aint broke dont fix it
-
-    // nevermind now it's fucking broken. im starting to comment like a valve dev
 
     // checks if the field is empty before assigning id value
     if (container.querySelector("#id-field").value != '') {
@@ -199,7 +230,6 @@ function addTask(location) {
     }
 
     // if theres no id provided, automatically increment it
-    // i actually forgot to check for null before, so now its fixed
     if (id == null) {
         const maxId = tasks.reduce((max, task) => {
             return task[0] > max ? task[0] : max
@@ -213,6 +243,7 @@ function addTask(location) {
     tasks.push(taskArray);
     localStorage.setItem("tasks", JSON.stringify(tasks))
     populateDataView()
+    populateTasks()
 
     alert("SUCESSFULLY ADDED TASK WITH NAME " + name + " AND ID " + id + "!")
   }
@@ -221,7 +252,7 @@ function removeTask(location) {
     const container = location.parentElement.parentElement
 
     const id = container.querySelector("#id-field").value
-    // if "all" is in the id field, it just fucking thundercunts the tasks local storage out the window completely
+    // if "all" is in the id field, remove item completely
     if (id === "all") {
       localStorage.removeItem("tasks")
       populateDataView()
@@ -235,12 +266,13 @@ function removeTask(location) {
         return
     }
 
-    // i should actually ask chatgpt to explain this im not so sure
+    // i should actually ask kai to explain this im not so sure
     const raw = localStorage.getItem("tasks")
     const tasks = raw ? JSON.parse(raw) : []
     const filtered = tasks.filter(task => task[0] !== Number(id))
     localStorage.setItem("tasks", JSON.stringify(filtered))
     populateDataView()
+    populateTasks()
 
     alert("SUCESSFULLY REMOVED TASK ENTRY WITH ID " + id + "!")
 }
@@ -261,12 +293,13 @@ function editTask(location) {
 
     let updatedTaskArray = [id, name, desc, status]
 
-    // also ask chatgpt here
+    // also ask kai here
     const raw = localStorage.getItem("tasks")
     const tasks = raw ? JSON.parse(raw) : []
     const updated = tasks.map(task => task[0] == id ? updatedTaskArray : task)
     localStorage.setItem("tasks", JSON.stringify(updated))
     populateDataView()
+    populateTasks()
 
     alert("SUCESSFULLY UPDATED TASK WITH ID " + id + "!")
 }

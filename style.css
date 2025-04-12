@@ -247,13 +247,18 @@ main > div {
 
     height: 60px;
 
+    margin: 10px 0px;
+
     padding: 10px 10px 10px 20px;
 
-    border: 1px solid var(--text);
+    background-color: var(--darker);
+
+    cursor: pointer;
 }
 
 #task-label {
     font-size: 2em;
+    color: var(--text);
 }
 
 #task > button {
@@ -268,14 +273,13 @@ main > div {
     cursor: pointer;
 
     background-color: var(--primary);
-    border: 3px solid var(--secondary);
+    border: none;
 
-    transition: background-color 0.2s ease-in-out, border 0.2s ease-in-out;
+    transition: background-color 0.2s ease-in-out;
 }
 
 #task > button:hover {
     background-color:var(--primary-lighter);
-    border-color: var(--primary);
 }
 
 /* admin rules  */

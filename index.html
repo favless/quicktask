@@ -51,8 +51,8 @@
                     
                 </div>
                 <div class="task-list">
-                    <div id="task" style="display: none;">
-                        <span id="task-label">Throw out the trash</span>
+                    <div id="task-template" style="display: none;">
+                        <span id="task-label" class="text bold">Throw out the trash</span>
                         <button onclick="">&check;</button>
                     </div>
                 </div>
@@ -82,7 +82,6 @@
                         <option value="pending">pending</option>
                         <option value="completed">completed</option>
                     </select>
-                    <!-- 🦀 lmaooo-->
                     <div>
                         <button class="text bold" onclick="addTask(this)">Add task</button>
                         <button class="text bold" onclick="editTask(this)">Edit from ID</button>
