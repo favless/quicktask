@@ -117,6 +117,18 @@ function getTasks(status = null) {
     alert("UNKNOWN STATUS!")
 }
 
+function getTaskById(id) {
+    const raw = localStorage.getItem("tasks")
+    const tasks = raw ? JSON.parse(raw) : []
+
+    if (!/^\d+$/.test(id)) {
+        alert("INVALID OR MISSING ID!")
+        return
+    }
+    
+    return tasks.find(task => task[0] == id)
+}
+
 function populateTasks() {
     const taskList = document.querySelector(".task-list")
     const taskTemplate = document.getElementById("task-template");
@@ -144,8 +156,22 @@ function populateTasks() {
     }
 
     document.querySelectorAll("#task").forEach(task => {
-        task.addEventListener("click", () => {
-            console.log("hello")
+        task.addEventListener("click", (e) => {
+            if (e.target.classList.contains("check-btn")) return;
+
+            const prevSelected = taskList.querySelector(".selected")
+            if (prevSelected) {
+                prevSelected.classList.remove("selected")
+            }
+            task.classList.add("selected")
+
+            const taskid = task.getAttribute("data-id");
+            const detailsTitle = document.getElementById("details-task-name")
+            const detailsDesc = document.getElementById("details-task-desc")
+            const taskData = getTaskById(taskid)
+            
+            detailsTitle.textContent = taskData[1]
+            detailsDesc.textContent = taskData[2]
         })
     });
 }

@@ -46,6 +46,10 @@ body.preload *::after {
     font-weight: bold;
 }
 
+.selected {
+    border: 2px solid #424242;
+}
+
 /* header rules */
 
 header {
@@ -100,6 +104,26 @@ main > div {
 .desc-container {
     padding: 20px;
     box-sizing: border-box;
+    height: calc(100dvh - var(--header-height) - 50px);
+}
+
+.desc-panel {
+    border: 5px solid var(--darker);
+    width: 100%;
+    height: 100%;
+
+    padding: 10px 30px;
+    box-sizing: border-box;
+}
+
+.desc-panel h1 {
+    font-size: 3rem;
+    color: var(--text);
+}
+
+.desc-panel p {
+    font-size: 1.66rem;
+    color: var(--text);
 }
 
 /* filter rules */
@@ -281,6 +305,8 @@ main > div {
 #task > button:hover {
     background-color:var(--primary-lighter);
 }
+
+
 
 /* admin rules  */
 
