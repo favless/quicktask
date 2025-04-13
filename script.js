@@ -153,14 +153,16 @@ function populateTasks() {
         let desc = tasks[i][2]
         let status = tasks[i][3]
 
-        // cloning, parenting and id changing
-        let newTask = taskTemplate.cloneNode(true);
-        newTask.setAttribute( 'id', "task" );
-        newTask.setAttribute("data-id", id);
-        taskList.appendChild(newTask)
+        if (filterMode == "all" || status == filterMode) {
+             // cloning, parenting and id changing
+            let newTask = taskTemplate.cloneNode(true);
+            newTask.setAttribute( 'id', "task" );
+            newTask.setAttribute("data-id", id);
+            taskList.appendChild(newTask)
         
-        newTask.style.display = "flex"
-        newTask.querySelector("#task-label").textContent = name;
+            newTask.style.display = "flex"
+            newTask.querySelector("#task-label").textContent = name;
+        }
     }
 
     document.querySelectorAll("#task").forEach(task => {
@@ -251,10 +253,10 @@ function addTask(location) {
 
     // if theres no id provided, automatically increment it
     if (id == null) {
-        const maxId = tasks.reduce((max, task) => {
+        const maxId = parseInt(tasks.reduce((max, task) => {
             return task[0] > max ? task[0] : max
-        }, 0)
-        id = maxId + 1
+        }, 0))
+        id =  maxId + 1
     }
     
     // bundle up the new array, push it to the tasks var and set it on local storage
