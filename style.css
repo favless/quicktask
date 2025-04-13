@@ -47,7 +47,7 @@ body.preload *::after {
 }
 
 .selected {
-    border: 2px solid #424242;
+    outline: 2px solid #424242;
 }
 
 /* header rules */
@@ -261,6 +261,8 @@ main > div {
 .task-list {
     margin-top: 10px;
 
+    padding: 0px 5px;
+
     overflow-y: auto;
 }
 
@@ -448,13 +450,14 @@ main > div {
 .entry {
     display: grid;
     grid-template-columns: 65px 35% 35% calc(100% - (70% + 64px));
-
-    height: 30px;
     background: linear-gradient(0deg, var(--darker) 0%, var(--body) 35%, var(--body) 100%);
     color: var(--text);
 }
 
 .entry > div {
+    min-height: 30px;
+    max-height: 60px;
+    overflow-y: auto;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -470,7 +473,7 @@ main > div {
 
 .seperator {
     width: 1px;
-    height: 80%;
+    height: calc(100% - 5px);
     background-color: #424242;
     align-self: center
 }

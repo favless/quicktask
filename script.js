@@ -129,6 +129,14 @@ function getTaskById(id) {
     return tasks.find(task => task[0] == id)
 }
 
+function completeTask(location) {
+    const taskDiv = location.parentElement;
+    const id = taskDiv.getAttribute("data-id")
+
+    const task = getTaskById(id)
+    editTask(null, id, task[1], task[2], "completed")
+}
+
 function populateTasks() {
     const taskList = document.querySelector(".task-list")
     const taskTemplate = document.getElementById("task-template");
@@ -217,21 +225,7 @@ populateDataView()
 function changeFilterMode(type) {
     filterMode = type
     sortLabel.textContent = "Sort by " + filterMode
-    updateTasks()
-}
-
-
-// i genuinely forgot what this is, probably temporary bullcrap
-function updateTasks() {
-    document.querySelectorAll("#task").forEach(element => {
-        element.remove()
-    });
-
-    let filteredTasks = getTasks(filterMode)
-    for (i=0; i < filteredTasks.length; i++) {
-        console.log(filteredTasks[i])
-    }
-
+    populateTasks()
 }
 
 function addTask(location) {
@@ -303,26 +297,25 @@ function removeTask(location) {
     alert("SUCESSFULLY REMOVED TASK ENTRY WITH ID " + id + "!")
 }
 
-function editTask(location) {
-    const container = location.parentElement.parentElement
-    let id = container.querySelector("#id-field").value
+// usage: editTask([object or null], id, name, desc, status) leave null to leave values as they are
+function editTask(input, id, name, desc, status) {
 
-    // again checks for non-number id
-    if (!/^\d+$/.test(id)) {
-        alert("INVALID OR MISSING ID!")
-        return
+    if (input != null) {
+        const container = input.parentElement.parentElement
+        id = container.querySelector("#id-field").value.trim() || null;
+        name = container.querySelector("#name-field").value.trim() || null;
+        desc = container.querySelector("#desc-field").value.trim() || null;
+        status = container.querySelector("#status-field").value.trim() || null;
     }
 
-    let name = container.querySelector("#name-field").value
-    let desc = container.querySelector("#desc-field").value
-    let status = container.querySelector("#status-field").value
-
-    let updatedTaskArray = [id, name, desc, status]
+    const replacementTask = [id, name, desc, status]
+    const selectedTask = getTaskById(id)
+    let updatedTask = selectedTask.map((val, index) => replacementTask[index] !== null ? replacementTask[index] : val);
 
     // also ask kai here
     const raw = localStorage.getItem("tasks")
     const tasks = raw ? JSON.parse(raw) : []
-    const updated = tasks.map(task => task[0] == id ? updatedTaskArray : task)
+    const updated = tasks.map(task => task[0] == id ? updatedTask : task)
     localStorage.setItem("tasks", JSON.stringify(updated))
     populateDataView()
     populateTasks()
