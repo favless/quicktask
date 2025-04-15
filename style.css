@@ -287,9 +287,11 @@ main > div {
     color: var(--text);
 }
 
-#task > button {
+.completed-btns button, #task > button {
     height: 100%;
     aspect-ratio: 1 / 1;
+
+    margin-left: 5px;
 
     font-size: 2em;
     color: var(--text);
@@ -304,11 +306,27 @@ main > div {
     transition: background-color 0.2s ease-in-out;
 }
 
-#task > button:hover {
+#task > div {
+    display: none;
+    flex-direction: row-reverse;
+    height: 100%;
+}
+
+.completed-btns button:hover, #task > button:hover {
     background-color:var(--primary-lighter);
 }
 
+.completed {
+    opacity: 66% !important;
+}
 
+.completed > button {
+    display: none !important;
+}
+
+.completed > div {
+    display: flex !important;
+}
 
 /* admin rules  */
 

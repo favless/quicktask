@@ -129,12 +129,19 @@ function getTaskById(id) {
     return tasks.find(task => task[0] == id)
 }
 
-function completeTask(location) {
+function userEditTask(location, value) {
     const taskDiv = location.parentElement;
-    const id = taskDiv.getAttribute("data-id")
+    const id = Number(taskDiv.getAttribute("data-id"))
 
-    const task = getTaskById(id)
-    editTask(null, id, task[1], task[2], "completed")
+    if (value == "remove") {
+        removeTask(id)
+        return
+    } else {
+        editTask(null, null, null, null, value)
+        return
+    }
+
+    
 }
 
 function populateTasks() {
@@ -158,6 +165,9 @@ function populateTasks() {
             let newTask = taskTemplate.cloneNode(true);
             newTask.setAttribute( 'id', "task" );
             newTask.setAttribute("data-id", id);
+            if (status == "completed") {
+                newTask.classList.add("completed")
+            }
             taskList.appendChild(newTask)
         
             newTask.style.display = "flex"
@@ -167,7 +177,7 @@ function populateTasks() {
 
     document.querySelectorAll("#task").forEach(task => {
         task.addEventListener("click", (e) => {
-            if (e.target.classList.contains("check-btn")) return;
+            if (e.target.classList.contains("task-btn")) return;
 
             const prevSelected = taskList.querySelector(".selected")
             if (prevSelected) {
@@ -234,11 +244,11 @@ function addTask(location) {
     const raw = localStorage.getItem("tasks")
     const tasks = raw ? JSON.parse(raw) : []
     const container = location.parentElement.parentElement
-    let id = null;
+    let id = 0;
 
     // checks if the field is empty before assigning id value
     if (container.querySelector("#id-field").value != '') {
-        id = container.querySelector("#id-field").value
+        id = Number(container.querySelector("#id-field").value) 
     }
 
     let name = container.querySelector("#name-field").value
@@ -270,16 +280,22 @@ function addTask(location) {
     alert("SUCESSFULLY ADDED TASK WITH NAME " + name + " AND ID " + id + "!")
   }
 
-function removeTask(location) {
-    const container = location.parentElement.parentElement
+function removeTask(locationOrId) {
+    let id;
 
-    const id = container.querySelector("#id-field").value
+    if (typeof(locationOrId) == "object") {
+        const container = locationOrId.parentElement.parentElement
+        id = container.querySelector("#id-field").value
+    } else {
+        id = locationOrId
+    }
+    
     // if "all" is in the id field, remove item completely
     if (id === "all") {
-      localStorage.removeItem("tasks")
-      populateDataView()
-      alert("SUCESSFULLY REMOVED ALL TASK ENTRIES!")
-      return;
+        localStorage.removeItem("tasks")
+        populateDataView()
+        alert("SUCESSFULLY REMOVED ALL TASK ENTRIES!")
+        return;
     }
 
     // check for non-number id provided
@@ -291,7 +307,7 @@ function removeTask(location) {
     // i should actually ask kai to explain this im not so sure
     const raw = localStorage.getItem("tasks")
     const tasks = raw ? JSON.parse(raw) : []
-    const filtered = tasks.filter(task => task[0] !== Number(id))
+    const filtered = tasks.filter(task => task[0] !== id)
     localStorage.setItem("tasks", JSON.stringify(filtered))
     populateDataView()
     populateTasks()
@@ -304,7 +320,7 @@ function editTask(input, id, name, desc, status) {
 
     if (input != null) {
         const container = input.parentElement.parentElement
-        id = container.querySelector("#id-field").value.trim() || null;
+        id = Number(container.querySelector("#id-field").value.trim()) || null;
         name = container.querySelector("#name-field").value.trim() || null;
         desc = container.querySelector("#desc-field").value.trim() || null;
         status = container.querySelector("#status-field").value.trim() || null;

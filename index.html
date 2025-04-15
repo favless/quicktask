@@ -53,7 +53,11 @@
                 <div class="task-list">
                     <div id="task-template" style="display: none;">
                         <span id="task-label" class="text bold">Throw out the trash</span>
-                        <button onclick="completeTask(this)" class="check-btn">&check;</button>
+                        <button onclick="userEditTask(this, 'completed')" class="task-btn">&check;</button>
+                        <div class="completed-btns">
+                            <button onclick="userEditTask(this.parentElement, 'remove')" class="task-btn">1</button>
+                            <button onclick="userEditTask(this.parentElement, 'pending')" class="task-btn">2</button>
+                        </div>
                     </div>
                 </div>
             </div>
