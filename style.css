@@ -306,6 +306,12 @@ main > div {
     transition: background-color 0.2s ease-in-out;
 }
 
+.completed-btns button > svg, #task > button > svg {
+    width: 70%;
+    height: 70%;
+    vertical-align: middle;
+}
+
 #task > div {
     display: none;
     flex-direction: row-reverse;
