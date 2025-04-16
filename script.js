@@ -121,8 +121,10 @@ function getTaskById(id) {
     const raw = localStorage.getItem("tasks")
     const tasks = raw ? JSON.parse(raw) : []
 
+    console.log(id + " | " + typeof(id))
+
     if (!/^\d+$/.test(id)) {
-        alert("INVALID OR MISSING ID!")
+        alert("INVALID OR MISSING ID AT getTaskById()")
         return
     }
     
@@ -131,13 +133,13 @@ function getTaskById(id) {
 
 function userEditTask(location, value) {
     const taskDiv = location.parentElement;
-    const id = Number(taskDiv.getAttribute("data-id"))
+    const id = taskDiv.dataset.id
 
     if (value == "remove") {
         removeTask(id)
         return
     } else {
-        editTask(null, null, null, null, value)
+        editTask(null, id, null, null, value)
         return
     }
 
@@ -244,11 +246,11 @@ function addTask(location) {
     const raw = localStorage.getItem("tasks")
     const tasks = raw ? JSON.parse(raw) : []
     const container = location.parentElement.parentElement
-    let id = 0;
+    let id;
 
     // checks if the field is empty before assigning id value
     if (container.querySelector("#id-field").value != '') {
-        id = Number(container.querySelector("#id-field").value) 
+        id = container.querySelector("#id-field").value
     }
 
     let name = container.querySelector("#name-field").value
@@ -257,13 +259,13 @@ function addTask(location) {
 
     // error if theres no name or desc
     if (name == '' || desc == '') {
-        alert("MISSING NAME OR DESCRIPTION!")
+        alert("MISSING NAME OR DESCRIPTION! AT addTask()")
         return
     }
 
     // if theres no id provided, automatically increment it
     if (id == null) {
-        const maxId = parseInt(tasks.reduce((max, task) => {
+        const maxId = Number(tasks.reduce((max, task) => {
             return task[0] > max ? task[0] : max
         }, 0))
         id =  maxId + 1
@@ -298,16 +300,18 @@ function removeTask(locationOrId) {
         return;
     }
 
+    console.log(locationOrId)
+
     // check for non-number id provided
     if (!/^\d+$/.test(id)) {
-        alert("INVALID OR MISSING ID!")
+        alert("INVALID OR MISSING ID! AT removeTask()")
         return
     }
 
     // i should actually ask kai to explain this im not so sure
     const raw = localStorage.getItem("tasks")
     const tasks = raw ? JSON.parse(raw) : []
-    const filtered = tasks.filter(task => task[0] !== id)
+    const filtered = tasks.filter(task => task[0] != id)
     localStorage.setItem("tasks", JSON.stringify(filtered))
     populateDataView()
     populateTasks()
@@ -320,7 +324,7 @@ function editTask(input, id, name, desc, status) {
 
     if (input != null) {
         const container = input.parentElement.parentElement
-        id = Number(container.querySelector("#id-field").value.trim()) || null;
+        id = container.querySelector("#id-field").value.trim() || null;
         name = container.querySelector("#name-field").value.trim() || null;
         desc = container.querySelector("#desc-field").value.trim() || null;
         status = container.querySelector("#status-field").value.trim() || null;
@@ -328,6 +332,7 @@ function editTask(input, id, name, desc, status) {
 
     const replacementTask = [id, name, desc, status]
     const selectedTask = getTaskById(id)
+    console.log(selectedTask)
     let updatedTask = selectedTask.map((val, index) => replacementTask[index] !== null ? replacementTask[index] : val);
 
     // also ask kai here
