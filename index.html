@@ -93,9 +93,9 @@
         </div>
     </main>
 
-    <div class="admin-menu-wrapper">
+    <div class="menu-wrapper" id="admin-menu-wrapper">
         <button onclick="toggleAdminPanel()"></button>
-        <div class="admin-menu-container">
+        <div class="menu-container">
             <div class="admin-menu">
                 <div class="topbar">
                     <button onclick="toggleAdminPanel()">x</button>
@@ -164,6 +164,27 @@
                 </div>
             </div>
             
+        </div>
+    </div>
+
+    <div class="menu-wrapper" id="add-menu-wrapper">
+        <button onclick="toggleAddMenu()"></button>
+        <div class="menu-container">
+            
+            <div class="add-menu">
+                <div class="topbar">
+                    <button onclick="toggleAddMenu()">x</button>
+                </div>
+                <h2 class="text bold">Add a Task</h2>
+                <div class="add-inputs text bold">
+                    <label for="">Name</label>
+                    <input type="text" id="name-field" autocomplete="off" placeholder="e.g. Wash the dishes">
+                    <label for="">Note</label>
+                    <input type="text" id="desc-field" autocomplete="off" placeholder="e.g. Don't forget the cups">
+                    <div>
+                        <button class="text bold" onclick="addTask(this)">Add</button>
+                    </div>
+            </div>
         </div>
     </div>
 

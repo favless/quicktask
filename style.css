@@ -336,7 +336,7 @@ main > div {
 
 /* admin rules  */
 
-.admin-menu-wrapper {
+.menu-wrapper {
     position: fixed;
 
     opacity: 0;
@@ -355,7 +355,7 @@ main > div {
     transition: opacity 0.2s ease-out;
 }
 
-.admin-menu-wrapper > button {
+.menu-wrapper > button {
     position: absolute;
     width: 100%;
     height: 100%;
@@ -365,7 +365,7 @@ main > div {
     cursor: pointer;
 }
 
-.admin-menu-container {
+.menu-container {
     display: flex;
     z-index: 1;
 }
@@ -390,11 +390,12 @@ main > div {
     cursor: pointer;
 }
 
-.admin-menu-container h2 {
+.menu-container h2 {
     font-size: 3rem;
     color: var(--text);
     text-align: center;
     margin: 0px;
+    user-select: none;
 }
 
 .admin-menu {
@@ -402,18 +403,18 @@ main > div {
     background-color: var(--body);
 }
 
-.admin-inputs {
+.admin-inputs, .add-inputs {
     display: flex;
     flex-direction: column;
 
     padding: 20px;
 }
 
-.admin-inputs label {
+.admin-inputs label, .add-inputs label {
     color: var(--text);
 }
 
-.admin-inputs input, select {
+.admin-inputs input, select, .add-inputs input {
     width: 100%;
     height: 40px;
 
@@ -436,7 +437,7 @@ main > div {
     justify-content: center;
 }
 
-.admin-inputs > div button {
+.admin-inputs > div button, .add-inputs > div button {
     border: 2px solid var(--secondary);
     background-color: var(--primary);
     font-size: 1.2rem;
@@ -451,7 +452,7 @@ main > div {
     transition: border-color 0.2s ease-in-out, background-color 0.2s ease-in-out;
 }
 
-.admin-inputs > div button:hover {
+.admin-inputs > div button:hover, .add-inputs > div button:hover {
     border-color: var(--primary);
     background-color: var(--primary-lighter);
 }
@@ -500,4 +501,21 @@ main > div {
     height: calc(100% - 5px);
     background-color: #424242;
     align-self: center
+}
+
+/* add stuff  */
+
+.add-menu {
+    width: 500px;
+
+    display: flex;
+    flex-direction: column;
+
+    background-color: var(--body);
+}
+
+.add-inputs > div button {
+    width: 100%;
+    margin: 0px;
+    font-size: 2rem;
 }

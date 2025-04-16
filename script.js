@@ -9,7 +9,8 @@ const addButtonLabel = document.getElementById("add-button-label")
 
 const sortLabel = document.getElementById("sort-label")
 
-const adminWrapper = document.querySelector(".admin-menu-wrapper")
+const adminWrapper = document.getElementById("admin-menu-wrapper")
+const addWrapper = document.getElementById("add-menu-wrapper")
 
 // for height initializing or whatever
 
@@ -82,6 +83,16 @@ function toggleAdminPanel() {
     } else {
         adminWrapper.style.opacity = "0";
         adminWrapper.style.pointerEvents = "none";
+    }
+}
+
+function toggleAddMenu() {
+    if (addWrapper.style.opacity == 0) {
+        addWrapper.style.opacity = "1";
+        addWrapper.style.pointerEvents = "auto";
+    } else {
+        addWrapper.style.opacity = "0";
+        addWrapper.style.pointerEvents = "none";
     }
 }
 
@@ -159,7 +170,6 @@ function populateTasks() {
     for (i=0; i < tasks.length; i++) {
         let id = tasks[i][0]
         let name = tasks[i][1]
-        let desc = tasks[i][2]
         let status = tasks[i][3]
 
         if (filterMode == "all" || status == filterMode) {
@@ -167,13 +177,15 @@ function populateTasks() {
             let newTask = taskTemplate.cloneNode(true);
             newTask.setAttribute( 'id', "task" );
             newTask.setAttribute("data-id", id);
+            newTask.style.display = "flex"
+            
             if (status == "completed") {
                 newTask.classList.add("completed")
+                newTask.querySelector("#task-label").textContent = name + " [COMPLETED]";
+            } else {
+                newTask.querySelector("#task-label").textContent = name;
             }
             taskList.appendChild(newTask)
-        
-            newTask.style.display = "flex"
-            newTask.querySelector("#task-label").textContent = name;
         }
     }
 
@@ -249,13 +261,13 @@ function addTask(location) {
     let id;
 
     // checks if the field is empty before assigning id value
-    if (container.querySelector("#id-field").value != '') {
+    if (container.querySelector("#id-field") && container.querySelector("#id-field").value != '') {
         id = container.querySelector("#id-field").value
     }
 
     let name = container.querySelector("#name-field").value
     let desc = container.querySelector("#desc-field").value
-    let status = container.querySelector("#status-field").value
+    let status = container.querySelector("#status-field")?.value
 
     // error if theres no name or desc
     if (name == '' || desc == '') {

@@ -1,2 +1,20 @@
-# quicktask (WIP)
- A simple and responsive task management web app, still early in development. You can use the [Netlify site](https://quicktask-favless.netlify.app/) to view progress conveniently.
+# QuickTask
+A simple and responsive web app, built for simple and easy to understand task management.
+
+# Features
+Currently the following features have been implemented:
+- Adding and removing tasks
+- Restarting tasks
+- Task notes/descriptions
+- Dark mode
+- Admin panel
+
+# To-Do
+A few features/changes planned for the future include:
+- Giving the "note/description" panel more purpose
+- Task ordering
+- Task editing
+- Custom popups
+
+# How do I use this?
+To use QuickTask, either download the source code and run the html file, or visit the [Netlify website](https://quicktask-favless.netlify.app/).
