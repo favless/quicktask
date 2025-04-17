@@ -96,6 +96,34 @@ function toggleAddMenu() {
     }
 }
 
+document.addEventListener('DOMContentLoaded', () => {
+    const tooltip = document.createElement('div');
+    tooltip.id = 'custom-tooltip';
+    tooltip.classList.add("tooltip")
+    document.body.appendChild(tooltip);
+
+    let timeout;
+
+    document.addEventListener('mouseover', e => {
+        const target = e.target.closest('[data-tooltip]');
+        if (!target) return;
+
+        timeout = setTimeout(() => {
+            tooltip.textContent = target.getAttribute('data-tooltip');
+            tooltip.style.opacity = '1';
+            const rect = target.getBoundingClientRect();
+            tooltip.style.left = `${rect.left + rect.width / 2}px`
+            tooltip.style.top = `${rect.bottom + 8}px`
+            tooltip.style.transform = "translateX(-50%)"
+        }, 500); // delay before showing
+    });
+
+    document.addEventListener('mouseout', () => {
+        clearTimeout(timeout);
+        tooltip.style.opacity = '0';
+    });
+});
+
 // DATA HANDLING FUNCTIONS ------------------------------
 
 // template for the data structure:
@@ -175,15 +203,16 @@ function populateTasks() {
         if (filterMode == "all" || status == filterMode) {
              // cloning, parenting and id changing
             let newTask = taskTemplate.cloneNode(true);
+            let label = newTask.querySelector("#task-label")
             newTask.setAttribute( 'id', "task" );
             newTask.setAttribute("data-id", id);
             newTask.style.display = "flex"
+            label.textContent = name;
+            label.setAttribute("data-tooltip", name)
             
             if (status == "completed") {
                 newTask.classList.add("completed")
-                newTask.querySelector("#task-label").textContent = name + " [COMPLETED]";
-            } else {
-                newTask.querySelector("#task-label").textContent = name;
+
             }
             taskList.appendChild(newTask)
         }
