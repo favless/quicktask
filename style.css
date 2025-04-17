@@ -28,7 +28,7 @@ body.dark {
 }
 
 * {
-    transition: background-color 0.3s ease, color 0.3s ease, fill 0.3s ease;
+    transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out, fill 0.3s ease-in-out;
 }
 
 body.preload,
@@ -37,6 +37,8 @@ body.preload *::before,
 body.preload *::after {
     transition: none !important;
 }
+
+/* dark mode transitions are completely fucked, i have no idea why. */
 
 .text {
     font-family: Arial, Helvetica, sans-serif;
@@ -75,6 +77,10 @@ header > div {
 
 .header-left img {
     height: 100%;
+}
+
+.header-right {
+    display: flex;
 }
 
 
@@ -543,13 +549,19 @@ main > div {
     font-weight: bold;
 }
 
-.darkmode-button {
+.darkmode-button, .admin-button {
     height: 100%;
     aspect-ratio: 1 / 1;
     background: none;
     border: none;
+
+    cursor: pointer;
 }
 
-.darkmode-button svg {
+.darkmode-button .moon {
+    display: none;
+}
+
+.darkmode-button svg, .admin-button svg {
     fill: var(--text);
 }

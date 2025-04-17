@@ -12,6 +12,9 @@ const sortLabel = document.getElementById("sort-label")
 const adminWrapper = document.getElementById("admin-menu-wrapper")
 const addWrapper = document.getElementById("add-menu-wrapper")
 
+const sunIcon = document.querySelector(".sun")
+const moonIcon = document.querySelector(".moon")
+
 // for height initializing or whatever
 
 const filterHeight = filterDropdown.offsetHeight
@@ -62,9 +65,13 @@ function toggleDarkMode() {
     document.body.classList.toggle("dark");
     if (darkmode == "off") {
         darkmode = "on"
+        sunIcon.style.display = "none"
+        moonIcon.style.display = "block"
         localStorage.setItem("darkmode", "on")
     } else {
         darkmode = "off"
+        sunIcon.style.display = "block"
+        moonIcon.style.display = "none"
         localStorage.setItem("darkmode", "off")
     }
 }
@@ -72,8 +79,12 @@ function toggleDarkMode() {
 // apply dark mode on page load
 if (darkmode == "on") {
     document.body.classList.add("dark");
+    sunIcon.style.display = "none"
+    moonIcon.style.display = "block"
 } else {
     document.body.classList.remove("dark");
+    sunIcon.style.display = "block"
+    moonIcon.style.display = "none"
 }
 
 function toggleAdminPanel() {
