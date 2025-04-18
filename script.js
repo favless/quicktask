@@ -43,9 +43,18 @@ window.addEventListener("DOMContentLoaded", () => {
     new Sortable(document.querySelector('.task-list'), {
         animation: 150,
         ghostClass: 'sortable-ghost',
-        onEnd: function (evt) {
-            // you can save the new order here
-            console.log(evt.oldIndex, evt.newIndex);
+        onEnd: function () {
+            const tasks = getTasks();
+            const taskElements = document.querySelectorAll("#task");
+    
+            // Update order based on current visual order
+            taskElements.forEach((taskEl, index) => {
+                const id = taskEl.dataset.id;
+                const task = tasks.find(t => t[0] == id);
+                if (task) task[4] = index; // update the "order"
+            });
+    
+            localStorage.setItem("tasks", JSON.stringify(tasks));
         }
     });
   });
@@ -213,7 +222,7 @@ function populateTasks() {
         element.remove()
     });
 
-    const tasks = getTasks()
+    const tasks = getTasks().sort((a, b) => a[4] - b[4]);
 
     for (i=0; i < tasks.length; i++) {
         let id = tasks[i][0]
@@ -317,6 +326,7 @@ function addTask(location) {
     let name = container.querySelector("#name-field").value
     let desc = container.querySelector("#desc-field").value
     let status = container.querySelector("#status-field")?.value || "pending"
+    let order = tasks.length; // add new task to the end
 
     // error if theres no name or desc
     if (name == '' || desc == '') {
@@ -333,7 +343,7 @@ function addTask(location) {
     }
     
     // bundle up the new array, push it to the tasks var and set it on local storage
-    let taskArray = [id, name, desc, status]
+    let taskArray = [id, name, desc, status, order]
   
     tasks.push(taskArray);
     localStorage.setItem("tasks", JSON.stringify(tasks))
