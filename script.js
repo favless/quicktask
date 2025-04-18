@@ -39,6 +39,15 @@ window.addEventListener("DOMContentLoaded", () => {
     setTimeout(() => {
       document.body.classList.remove("preload");
     }, 10);
+
+    new Sortable(document.querySelector('.task-list'), {
+        animation: 150,
+        ghostClass: 'sortable-ghost',
+        onEnd: function (evt) {
+            // you can save the new order here
+            console.log(evt.oldIndex, evt.newIndex);
+        }
+    });
   });
 
 
