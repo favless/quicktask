@@ -6,13 +6,13 @@ Currently the following features have been implemented:
 - Adding and removing tasks
 - Restarting tasks
 - Task notes/descriptions
+- Task ordering
 - Dark mode
 - Admin panel
 
 # To-Do
 A few features/changes planned for the future include:
 - Giving the "note/description" panel more purpose
-- Task ordering
 - Task editing
 - Custom popups
 
