@@ -307,7 +307,7 @@ function addTask(location) {
 
     let name = container.querySelector("#name-field").value
     let desc = container.querySelector("#desc-field").value
-    let status = container.querySelector("#status-field")?.value
+    let status = container.querySelector("#status-field")?.value || "pending"
 
     // error if theres no name or desc
     if (name == '' || desc == '') {

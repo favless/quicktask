@@ -32,7 +32,7 @@ body.dark {
 }
 
 .filter-button svg {
-    transition: fill 0.3s ease-in-out !important;
+    transition: fill 0.3s ease-in-out, rotate 0.2s ease-in-out !important;
 }
 
 svg {
