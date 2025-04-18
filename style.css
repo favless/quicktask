@@ -28,7 +28,19 @@ body.dark {
 }
 
 * {
-    transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out, fill 0.3s ease-in-out;
+    transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out, border-color 0.3s ease-in-out;
+}
+
+.filter-button svg {
+    transition: fill 0.3s ease-in-out !important;
+}
+
+svg {
+    transition: fill 0.3s ease-in-out;
+}
+
+.add-button {
+    transition: color 0.2s ease-in-out !important;
 }
 
 body.preload,
@@ -179,6 +191,7 @@ main > div {
 
 .filter-button svg {
     height: 100%;
+    fill: var(--text);
 
     rotate: 180deg;
     transition: rotate 0.2s ease-in-out;
@@ -556,6 +569,8 @@ main > div {
     border: none;
 
     cursor: pointer;
+
+    transition: scale 0.2s ease-in-out;
 }
 
 .darkmode-button .moon {
@@ -564,4 +579,8 @@ main > div {
 
 .darkmode-button svg, .admin-button svg {
     fill: var(--text);
+}
+
+.darkmode-button:hover, .admin-button:hover {
+    scale: 1.15;
 }
