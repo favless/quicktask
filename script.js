@@ -141,7 +141,7 @@ function toggleEditMenu() {
 document.addEventListener('DOMContentLoaded', () => {
     const tooltip = document.createElement('div');
     tooltip.id = 'custom-tooltip';
-    tooltip.classList.add("tooltip")
+    tooltip.classList.add("tooltip", "text", "bold")
     document.body.appendChild(tooltip);
 
     let timeout;
@@ -262,9 +262,9 @@ function populateTasks() {
 
     document.querySelectorAll("#task").forEach(task => {
         task.addEventListener("click", (e) => {
-            document.querySelector(".task-edit-button").style.display = "flex";
             if (e.target.classList.contains("task-btn")) return;
 
+            document.querySelector(".task-edit-button").style.display = "flex";
             const prevSelected = taskList.querySelector(".selected")
             if (prevSelected) {
                 prevSelected.classList.remove("selected")
