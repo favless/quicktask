@@ -401,8 +401,6 @@ main > div {
     opacity: 0;
     display: flex;
     pointer-events: none;
-
-    display: flex;
     justify-content: center;
     align-items: center;
 
@@ -581,6 +579,17 @@ main > div {
     font-size: 2rem;
 }
 
+ /* edit stuff  */
+
+.edit-menu {
+    width: 500px;
+    
+    display: flex;
+    flex-direction: column;
+    
+    background-color: var(--body);
+}
+
 /* misc single stuff  */
 
 .tooltip {
@@ -618,4 +627,29 @@ main > div {
 
 .darkmode-button:hover, .admin-button:hover {
     scale: 1.15;
+}
+
+.task-edit-button {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 2rem;
+    height: 50px;
+    display: none;
+    align-items: center;
+    white-space: nowrap;
+
+    margin-top: 20px;
+
+    background: none;
+    border: none;
+
+    color: var(--text);
+
+    cursor: pointer;
+}
+
+.task-edit-button svg {
+    height: 100%;
+    margin-right: 15px;
+    aspect-ratio: 1 / 1;
+    fill: var(--text)
 }

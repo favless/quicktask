@@ -11,6 +11,7 @@ const sortLabel = document.getElementById("sort-label")
 
 const adminWrapper = document.getElementById("admin-menu-wrapper")
 const addWrapper = document.getElementById("add-menu-wrapper")
+const editWrapper = document.getElementById("edit-menu-wrapper")
 
 const sunIcon = document.querySelector(".sun")
 const moonIcon = document.querySelector(".moon")
@@ -26,6 +27,7 @@ addButtonLabel.style.maxWidth = "0px"
 // general variables
 
 let filterMode = "all"
+let currentSelected
 
 let darkmode = localStorage.getItem("darkmode")
 if (darkmode == null) {
@@ -125,6 +127,17 @@ function toggleAddMenu() {
     }
 }
 
+function toggleEditMenu() {
+    if (editWrapper.style.opacity == 0) {
+        editWrapper.style.opacity = "1";
+        editWrapper.style.pointerEvents = "auto";
+    } else {
+        editWrapper.style.opacity = "0";
+        editWrapper.style.pointerEvents = "none";
+    }
+}
+
+// tooltip
 document.addEventListener('DOMContentLoaded', () => {
     const tooltip = document.createElement('div');
     tooltip.id = 'custom-tooltip';
@@ -249,6 +262,7 @@ function populateTasks() {
 
     document.querySelectorAll("#task").forEach(task => {
         task.addEventListener("click", (e) => {
+            document.querySelector(".task-edit-button").style.display = "flex";
             if (e.target.classList.contains("task-btn")) return;
 
             const prevSelected = taskList.querySelector(".selected")
@@ -256,6 +270,8 @@ function populateTasks() {
                 prevSelected.classList.remove("selected")
             }
             task.classList.add("selected")
+            currentSelected = task.dataset.id
+            
 
             const taskid = task.getAttribute("data-id");
             const detailsTitle = document.getElementById("details-task-name")
@@ -395,10 +411,10 @@ function editTask(input, id, name, desc, status) {
 
     if (input != null) {
         const container = input.parentElement.parentElement
-        id = container.querySelector("#id-field").value.trim() || null;
+        id = container.querySelector("#id-field")?.value.trim() || currentSelected;
         name = container.querySelector("#name-field").value.trim() || null;
         desc = container.querySelector("#desc-field").value.trim() || null;
-        status = container.querySelector("#status-field").value.trim() || null;
+        status = container.querySelector("#status-field")?.value.trim() || null;
     }
 
     const replacementTask = [id, name, desc, status]

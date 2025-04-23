@@ -121,8 +121,21 @@
             </div>
             <div class="desc-container">
                 <div class="desc-panel">
+                    <button class="task-edit-button" onclick="toggleEditMenu(this)">
+                        <svg viewBox="0 -0.5 21 21">
+                            <g stroke="none" stroke-width="1">
+                                <g transform="translate(-99.000000, -400.000000)">
+                                    <g transform="translate(56.000000, 160.000000)">+
+                                        <path d="M61.9,258.010643 L45.1,258.010643 L45.1,242.095788 L53.5,242.095788 L53.5,240.106431 L43,240.106431 L43,260 L64,260 L64,250.053215 L61.9,250.053215 L61.9,258.010643 Z M49.3,249.949769 L59.63095,240 L64,244.114985 L53.3341,254.031929 L49.3,254.031929 L49.3,249.949769 Z"></path>
+                                    </g>
+                                </g>
+                            </g>
+                        </svg>
+                        Edit Task
+                    </button>
                     <h1 id="details-task-name" class="text bold">Welcome to QuickTask!</h1>
-                    <p id="details-task-desc" class="text">To start managing your tasks, press the + button to add a task.</p>
+                    
+                    <p id="details-task-desc" class="text">To start managing your tasks, press the + button to add a task. <br> Notes will appear here.</p>
                 </div>
             </div>
         </div>
@@ -202,6 +215,26 @@
         </div>
     </div>
 
+    <div class="menu-wrapper" id="edit-menu-wrapper">
+        <button onclick="toggleEditMenu()"></button>
+        <div class="menu-container">
+            <div class="edit-menu">
+                <div class="topbar">
+                    <button onclick="toggleAdminPanel()">x</button>
+                </div>
+                <h2 class="text bold">Edit Task</h2>
+                <div class="add-inputs text bold">
+                    <label>Name</label>
+                    <input type="text" id="name-field" autocomplete="off" placeholder="e.g. Wash the dishes">
+                    <label>Note</label>
+                    <input type="text" id="desc-field" autocomplete="off" placeholder="e.g. Don't forget the cups">
+                    <div>
+                        <button class="text bold" onclick="editTask(this)">Add</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <div class="menu-wrapper" id="add-menu-wrapper">
         <button onclick="toggleAddMenu()"></button>
         <div class="menu-container">
@@ -218,10 +251,12 @@
                     <input type="text" id="desc-field" autocomplete="off" placeholder="e.g. Don't forget the cups">
                     <div>
                         <button class="text bold" onclick="addTask(this)">Add</button>
-                    </div>
+                </div>
             </div>
         </div>
     </div>
+
+    
 
     <script src="script.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sortablejs@latest/Sortable.min.js"></script>
