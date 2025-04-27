@@ -601,6 +601,7 @@ main > div {
     font-size: 1.2rem;
     opacity: 0;
     transition: opacity 0.2s ease;
+    z-index: 100;
 }
 
 #custom-popup {

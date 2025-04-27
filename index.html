@@ -7,9 +7,6 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body class="preload">
-
-    <div class="loading-screen"></div>
-
     <header>
         <div class="header-container">
             <div class="header-left">
@@ -125,7 +122,7 @@
                         <svg viewBox="0 -0.5 21 21">
                             <g stroke="none" stroke-width="1">
                                 <g transform="translate(-99.000000, -400.000000)">
-                                    <g transform="translate(56.000000, 160.000000)">+
+                                    <g transform="translate(56.000000, 160.000000)">
                                         <path d="M61.9,258.010643 L45.1,258.010643 L45.1,242.095788 L53.5,242.095788 L53.5,240.106431 L43,240.106431 L43,260 L64,260 L64,250.053215 L61.9,250.053215 L61.9,258.010643 Z M49.3,249.949769 L59.63095,240 L64,244.114985 L53.3341,254.031929 L49.3,254.031929 L49.3,249.949769 Z"></path>
                                     </g>
                                 </g>
@@ -141,7 +138,7 @@
         </div>
     </main>
 
-    <div id="custom-popup">
+    <div id="custom-popup" style="z-index: 10;">
         <svg viewBox="0 0 416.979 416.979">
             <g>
                 <path d="M356.004,61.156c-81.37-81.47-213.377-81.551-294.848-0.182c-81.47,81.371-81.552,213.379-0.181,294.85   c81.369,81.47,213.378,81.551,294.849,0.181C437.293,274.636,437.375,142.626,356.004,61.156z M237.6,340.786   c0,3.217-2.607,5.822-5.822,5.822h-46.576c-3.215,0-5.822-2.605-5.822-5.822V167.885c0-3.217,2.607-5.822,5.822-5.822h46.576   c3.215,0,5.822,2.604,5.822,5.822V340.786z M208.49,137.901c-18.618,0-33.766-15.146-33.766-33.765   c0-18.617,15.147-33.766,33.766-33.766c18.619,0,33.766,15.148,33.766,33.766C242.256,122.755,227.107,137.901,208.49,137.901z"/>
@@ -152,8 +149,8 @@
         </span>
     </div>
 
-    <div class="menu-wrapper" id="admin-menu-wrapper">
-        <button onclick="toggleAdminPanel()"></button>
+    <div class="menu-wrapper" id="admin-menu-wrapper" style="z-index: 6;">
+        <button onclick="toggleAdminPanel()">&nbsp;</button>
         <div class="menu-container">
             <div class="admin-menu">
                 <div class="topbar">
@@ -226,8 +223,8 @@
         </div>
     </div>
 
-    <div class="menu-wrapper" id="edit-menu-wrapper">
-        <button onclick="toggleEditMenu()"></button>
+    <div class="menu-wrapper" id="edit-menu-wrapper" style="z-index: 7;">
+        <button onclick="toggleEditMenu()">&nbsp;</button>
         <div class="menu-container">
             <div class="edit-menu">
                 <div class="topbar">
@@ -246,8 +243,8 @@
         </div>
     </div>
 
-    <div class="menu-wrapper" id="add-menu-wrapper">
-        <button onclick="toggleAddMenu()"></button>
+    <div class="menu-wrapper" id="add-menu-wrapper" style="z-index: 8;">
+        <button onclick="toggleAddMenu()">&nbsp;</button>
         <div class="menu-container">
             
             <div class="add-menu">

@@ -35,6 +35,14 @@ if (darkmode == null) {
     darkmode = "off"
 }
 
+// the unholy pit
+
+// literally have to force the add menu back under body because the dom gods hate me.
+document.addEventListener('DOMContentLoaded', () => {
+        const addMenu = document.getElementById('add-menu-wrapper');
+        document.body.appendChild(addMenu)
+});
+
 // COSMETIC FUNCTIONS -------------------------------
 
 window.addEventListener("DOMContentLoaded", () => {
