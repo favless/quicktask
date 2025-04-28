@@ -47,6 +47,8 @@
     .task-list {
         height: calc(100% - 50px);
     }
+
+
 }
 
 body {
@@ -617,17 +619,18 @@ main > div {
     color: var(--text);
     fill: var(--text);
 
-    font-size: 2rem;
+    font-size: 1.7rem;
 
-    opacity: 1;
-    transition: opacity 0.2s ease;
+    opacity: 0;
 
     left: 50%;
-    bottom: 20px;
-    transform: translateX(-50%);
+    bottom: 0px;
+    transform: translate(-50%, 100%);
 
     user-select: none;
     cursor: pointer;
+
+    transition: opacity 0.2s ease, transform 0.2s ease;
 }
 
 #custom-popup svg {

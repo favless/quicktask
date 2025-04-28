@@ -16,6 +16,9 @@ const editWrapper = document.getElementById("edit-menu-wrapper")
 const sunIcon = document.querySelector(".sun")
 const moonIcon = document.querySelector(".moon")
 
+const popup = document.getElementById("custom-popup")
+const popupLabel = document.getElementById("popup-label")
+
 // for height initializing or whatever
 
 const filterHeight = filterDropdown.offsetHeight
@@ -174,6 +177,23 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 });
 
+// for popups
+
+function sendPopup(text, delay) {
+    if (!delay) {
+        delay = 4000;
+    }
+    popupLabel.textContent = text;
+
+    popup.style.transform = "translate(-50%, -20%)";
+    popup.style.opacity = "1";
+
+    setTimeout(() => {
+        popup.style.transform = "translate(-50%, 100%)"
+        popup.style.opacity = "0"
+    }, delay);
+}
+
 // DATA HANDLING FUNCTIONS ------------------------------
 
 // template for the data structure:
@@ -203,7 +223,7 @@ function getTasks(status = null) {
     }
   
     // error handler
-    alert("UNKNOWN STATUS!")
+    sendPopup("UNKNOWN STATUS!")
 }
 
 function getTaskById(id) {
@@ -213,7 +233,7 @@ function getTaskById(id) {
     console.log(id + " | " + typeof(id))
 
     if (!/^\d+$/.test(id)) {
-        alert("INVALID OR MISSING ID AT getTaskById()")
+        sendPopup("INVALID OR MISSING ID AT getTaskById()")
         return
     }
     
@@ -354,7 +374,7 @@ function addTask(location) {
 
     // error if theres no name or desc
     if (name == '' || desc == '') {
-        alert("MISSING NAME OR DESCRIPTION! AT addTask()")
+        sendPopup("MISSING NAME OR DESCRIPTION! AT addTask()")
         return
     }
 
@@ -374,7 +394,7 @@ function addTask(location) {
     populateDataView()
     populateTasks()
 
-    alert("SUCESSFULLY ADDED TASK WITH NAME " + name + " AND ID " + id + "!")
+    sendPopup("SUCESSFULLY ADDED TASK WITH NAME " + name + " AND ID " + id + "!")
   }
 
 function removeTask(locationOrId) {
@@ -391,7 +411,7 @@ function removeTask(locationOrId) {
     if (id === "all") {
         localStorage.removeItem("tasks")
         populateDataView()
-        alert("SUCESSFULLY REMOVED ALL TASK ENTRIES!")
+        sendPopup("SUCESSFULLY REMOVED ALL TASK ENTRIES!")
         return;
     }
 
@@ -399,7 +419,7 @@ function removeTask(locationOrId) {
 
     // check for non-number id provided
     if (!/^\d+$/.test(id)) {
-        alert("INVALID OR MISSING ID! AT removeTask()")
+        sendPopup("INVALID OR MISSING ID! AT removeTask()")
         return
     }
 
@@ -411,7 +431,7 @@ function removeTask(locationOrId) {
     populateDataView()
     populateTasks()
 
-    alert("SUCESSFULLY REMOVED TASK ENTRY WITH ID " + id + "!")
+    sendPopup("SUCESSFULLY REMOVED TASK ENTRY WITH ID " + id + "!")
 }
 
 // usage: editTask([object or null], id, name, desc, status) leave null to leave values as they are
@@ -438,5 +458,5 @@ function editTask(input, id, name, desc, status) {
     populateDataView()
     populateTasks()
 
-    alert("SUCESSFULLY UPDATED TASK WITH ID " + id + "!")
+    sendPopup("SUCESSFULLY UPDATED TASK WITH ID " + id + "!")
 }
