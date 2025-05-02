@@ -30,7 +30,7 @@ addButtonLabel.style.maxWidth = "0px"
 // general variables
 
 let filterMode = "all"
-let currentSelected
+let currentSelected // for selected task id
 
 let darkmode = localStorage.getItem("darkmode")
 if (darkmode == null) {
@@ -301,7 +301,7 @@ function populateTasks() {
             currentSelected = task.dataset.id
             
 
-            const taskid = task.getAttribute("data-id");
+            const taskid = currentSelected;
             const detailsTitle = document.getElementById("details-task-name")
             const detailsDesc = document.getElementById("details-task-desc")
             const taskData = getTaskById(taskid)
@@ -362,14 +362,19 @@ function addTask(location) {
     const container = location.parentElement.parentElement
     let id;
 
+    idField = container.querySelector("#id-field")
+    nameField = container.querySelector("#name-field")
+    descField = container.querySelector("#desc-field")
+    statusField = container.querySelector("#status-field")
+
     // checks if the field is empty before assigning id value
-    if (container.querySelector("#id-field") && container.querySelector("#id-field").value != '') {
+    if (idField && idField.value != '') {
         id = container.querySelector("#id-field").value
     }
 
-    let name = container.querySelector("#name-field").value
-    let desc = container.querySelector("#desc-field").value
-    let status = container.querySelector("#status-field")?.value || "pending"
+    let name = nameField.value
+    let desc = descField.value
+    let status = statusField?.value || "pending"
     let order = tasks.length; // add new task to the end
 
     // error if theres no name or desc
@@ -393,6 +398,10 @@ function addTask(location) {
     localStorage.setItem("tasks", JSON.stringify(tasks))
     populateDataView()
     populateTasks()
+
+    // clear out fields
+    nameField.value = "";
+    descField.value = "";
 
     sendPopup("SUCESSFULLY ADDED TASK WITH NAME " + name + " AND ID " + id + "!")
   }
@@ -436,18 +445,25 @@ function removeTask(locationOrId) {
 
 // usage: editTask([object or null], id, name, desc, status) leave null to leave values as they are
 function editTask(input, id, name, desc, status) {
+    const container = input?.parentElement.parentElement
+    let idField, nameField, descField, statusField;
 
+
+    // check for fields instead of direct input
     if (input != null) {
-        const container = input.parentElement.parentElement
-        id = container.querySelector("#id-field")?.value.trim() || currentSelected;
-        name = container.querySelector("#name-field").value.trim() || null;
-        desc = container.querySelector("#desc-field").value.trim() || null;
-        status = container.querySelector("#status-field")?.value.trim() || null;
+        idField = container.querySelector("#id-field")
+        nameField = container.querySelector("#name-field")
+        descField = container.querySelector("#desc-field")
+        statusField = container.querySelector("#status-field")
+
+        id = idField?.value.trim() || currentSelected;
+        name = nameField.value.trim() || null;
+        desc = descField.value.trim() || null;
+        status = statusField?.value.trim() || null;
     }
 
     const replacementTask = [id, name, desc, status]
     const selectedTask = getTaskById(id)
-    console.log(selectedTask)
     let updatedTask = selectedTask.map((val, index) => replacementTask[index] !== null ? replacementTask[index] : val);
 
     // also ask kai here
@@ -455,8 +471,27 @@ function editTask(input, id, name, desc, status) {
     const tasks = raw ? JSON.parse(raw) : []
     const updated = tasks.map(task => task[0] == id ? updatedTask : task)
     localStorage.setItem("tasks", JSON.stringify(updated))
+
+    // clear out fields
+    if (container) {
+        if (idField) idField.value = ""
+        nameField.value = ""
+        descField.value = ""
+        if (statusField) statusField.value = ""
+    }
+    
+
     populateDataView()
     populateTasks()
+    
+    // update description
+    const updatedSelectedTask = getTaskById(id)
+
+    const detailsTitle = document.getElementById("details-task-name")
+    const detailsDesc = document.getElementById("details-task-desc")
+    detailsTitle.textContent = updatedSelectedTask[1]
+    detailsDesc.textContent = updatedSelectedTask[2]
 
     sendPopup("SUCESSFULLY UPDATED TASK WITH ID " + id + "!")
+
 }

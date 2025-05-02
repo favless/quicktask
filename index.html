@@ -228,7 +228,7 @@
         <div class="menu-container">
             <div class="edit-menu">
                 <div class="topbar">
-                    <button onclick="toggleAdminPanel()">x</button>
+                    <button onclick="toggleEditMenu()">x</button>
                 </div>
                 <h2 class="text bold">Edit Task</h2>
                 <div class="add-inputs text bold">
@@ -237,7 +237,7 @@
                     <label>Note</label>
                     <input type="text" id="desc-field" autocomplete="off" placeholder="e.g. Don't forget the cups">
                     <div>
-                        <button class="text bold" onclick="editTask(this)">Add</button>
+                        <button class="text bold" onclick="editTask(this)">Update</button>
                 </div>
             </div>
         </div>
@@ -264,7 +264,8 @@
         </div>
     </div>
 
-    <script src="script.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sortablejs@latest/Sortable.min.js"></script>
+    <script src="script.js"></script>
+    
 </body> 
 </html>

@@ -7,14 +7,13 @@ Currently the following features have been implemented:
 - Restarting tasks
 - Task notes/descriptions
 - Task ordering
+- Task editing
 - Dark mode
 - Admin panel
 
 # To-Do
 A few features/changes planned for the future include:
 - Giving the "note/description" panel more purpose
-- Task editing
-- Custom popups
 
 # How do I use this?
 To use QuickTask, either download the source code and run the html file, or visit the [Netlify website](https://quicktask-favless.netlify.app/).
